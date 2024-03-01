@@ -17,6 +17,7 @@ router.put('/update-product/:product_id', handleUpdateProduct);
 
 // Route for deleting a product
 router.delete('/delete-product/:product_id', handleDeleteProduct);
+
 //router.get('/api/orders',getOrderCounts)
 
 router.get('/export-to-excel',exportToExcelProducts);
