@@ -19,7 +19,7 @@ router.post('/',(req, res)=>{
       return res.status(400).json({ error: 'Search term is required' });
     }
   console.log(searchTerm.search);
-    const searchQuery = `SELECT * FROM product WHERE ProductName like ${searchTerm.search}`;
+  const searchQuery = `SELECT * FROM product WHERE ProductName like '%${searchTerm.search}%'`;
 
     connection.query(searchQuery, (error, results) => {
       if (error) {
@@ -27,8 +27,8 @@ router.post('/',(req, res)=>{
         return res.status(500).json({ error: 'Internal Server Error' });
       }
 
-    console.log(searchTerm);
-    res.render('searchproduct',{...searchTerm});
+    console.log(results);
+    res.render('searchproduct',{products:results});
     });
 
 

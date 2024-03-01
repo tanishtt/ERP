@@ -4,11 +4,11 @@ const connection = mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"Tanish99@#@#",
-    database:'erp',
+    database:'doorly',
     
 
 });
-//console.log(con);
+//console.log(connection);
 
 module.exports=connection;
 
