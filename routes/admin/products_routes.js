@@ -15,6 +15,8 @@ router.post('/add-product', handleAddProduct);
 // Route for updating a product
 router.put('/update-product/:product_id', handleUpdateProduct);
 
+
+
 // Route for deleting a product
 router.delete('/delete-product/:product_id', handleDeleteProduct);
 
