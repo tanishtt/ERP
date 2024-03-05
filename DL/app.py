@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from your_model import transcribe_audio_chunk  # Import function to transcribe audio chunk
+#from your_model import transcribe_audio_chunk  # Import function to transcribe audio chunk
 
 app = Flask(__name__)
 
