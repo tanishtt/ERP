@@ -7,7 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 import { Link } from "react-router-dom";
 
-const Products = () => {
+export const Products = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
