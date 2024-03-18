@@ -1,6 +1,7 @@
 {
   "name": "customer-screen",
   "version": "0.1.0",
+  "proxy":"http://localhost:3000",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",

@@ -2,7 +2,7 @@ const multer = require('multer');
 const path = require('path');
 
 
-const uploadDir = path.resolve(__dirname, '..', 'public/uploads');
+const uploadDir = path.resolve(__dirname, '..', 'public/uploads/products');
 console.log(uploadDir);
 
 
