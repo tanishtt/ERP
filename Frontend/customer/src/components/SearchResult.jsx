@@ -25,7 +25,7 @@ export const SearchResult = ({ result, addProduct }) => {
           <div className="card text-center h-100">
             <img
               className="card-img-top p-3"
-              src={result.image}
+              src={result.photos}
               alt="Card"
               height={300}
             />
