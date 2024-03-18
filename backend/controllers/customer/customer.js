@@ -124,20 +124,22 @@ async function handleOrderSubmit(req, res) {
 
 //get products in search bar.
 async function getProducts(req, res) {
-    //const pName = req.body.product_name;
-    // const Products = `select productName, Price from customer where productName like '%${pName}%'`;
-    const ProductDetails = `select * from products`;// where product_name like '%${pName}%'`;
-    connection.query(ProductDetails,(err, result)=>{
-        if(err){
-            console.log('internal server error');
-            return res.status(500).json({ error: 'Error in fetching product details' });
-        }
-
-        console.log(result);
-        return res.json(result);
-    })
-    
+    try {
+        const ProductDetails = `SELECT * FROM products`;
+        connection.query(ProductDetails, (err, result) => {
+            if (err) {
+                console.error('Error fetching product details:', err);
+                return res.status(500).json({ error: 'Internal server error' });
+            }
+            console.log(result);
+            return res.json(result);
+        });
+    } catch (error) {
+        console.error('Error in getProducts function:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
 }
+
 
 
 
