@@ -69,19 +69,19 @@ const Product = () => {
             <div className="col-md-6 col-sm-12 py-3">
               <img
                 className="img-fluid"
-                src={product.image}
-                alt={product.title}
+                src={product.photos}
+                alt={product.product_name}
                 width="400px"
                 height="400px"
               />
             </div>
             <div className="col-md-6 col-md-6 py-5">
-              <h4 className="text-uppercase text-muted">{product.category}</h4>
-              <h1 className="display-5">{product.title}</h1>
-              <p className="lead">
-                {product.rating && product.rating.rate}{" "}
-                <i className="fa fa-star"></i>
-              </p>
+              <h4 className="text-uppercase text-muted">{product.category_id}</h4>
+              <h1 className="display-5">{product.product_name}</h1>
+              // <p className="lead">
+              //   {product.rating && product.rating.rate}{" "}
+              //   <i className="fa fa-star"></i>
+              // </p>
               <h3 className="display-6  my-4">${product.price}</h3>
               <p className="lead">{product.description}</p>
               <button
@@ -130,17 +130,17 @@ const Product = () => {
           <div className="d-flex">
             {similarProducts.map((item) => {
               return (
-                <div key={item.id} className="card mx-4 text-center">
+                <div key={item.product_id} className="card mx-4 text-center">
                   <img
                     className="card-img-top p-3"
-                    src={item.image}
+                    src={item.photos}
                     alt="Card"
                     height={300}
                     width={300}
                   />
                   <div className="card-body">
                     <h5 className="card-title">
-                      {item.title.substring(0, 15)}...
+                      {item.product_name.substring(0, 15)}...
                     </h5>
                   </div>
                   {/* <ul className="list-group list-group-flush">
@@ -148,7 +148,7 @@ const Product = () => {
                   </ul> */}
                   <div className="card-body">
                     <Link
-                      to={"/product/" + item.id}
+                      to={"/product/" + item.product_id}
                       className="btn btn-dark m-1"
                     >
                       Buy Now

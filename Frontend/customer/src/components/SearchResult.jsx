@@ -21,11 +21,11 @@ export const SearchResult = ({ result, addProduct }) => {
   return (
     <div className="container my-3 py-3">
       <div className="search-result" onClick={handleAddToCart}>
-        <div id={result.id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
+        <div id={result.product_id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
           <div className="card text-center h-100">
             <img
               className="card-img-top p-3"
-              src={result.image}
+              src={result.photos}
               alt="Card"
               height={300}
             />
@@ -41,7 +41,7 @@ export const SearchResult = ({ result, addProduct }) => {
               <li className="list-group-item lead">$ {result.price}</li>
             </ul>
             <div className="card-body">
-              <Link to={"/product/" + result.id} className="btn btn-dark m-1">
+              <Link to={"/product/" + result.product_id} className="btn btn-dark m-1">
                 Buy Now
               </Link>
               <button
