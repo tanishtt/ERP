@@ -8,7 +8,9 @@ export const SearchBar = ({ setResults }) => {
 
   const fetchData = (value) => {
     fetch("http://localhost:3000/customer/get-products")
-      .then((response) => {console.log(response);return response.json()})
+      .then((response) => {
+        //console.log(response);
+        return response.json()})
       .then((json) => {
         console.log(json, value);
         const results = json.filter((item) => {
