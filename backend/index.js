@@ -6,6 +6,7 @@
 // const path= require('path');
 // const {Server}= require('socket.io');
 // const http= require('http');
+// var cors = require('cors')
 
 // const server=http.createServer(app);
 
@@ -58,12 +59,18 @@
 
 // app.use(bodyParser.json());//convert into json
 // app.use(bodyParser.urlencoded({extended:true}));//encrypt it.
+// app.use('/customer-build', express.static(path.join(__dirname, '../frontend/customer/build')));
 
 
 // app.set('views', path.resolve('./views'));//represents the setting key for the views directory.
 // app.set('view engine', 'ejs')
 
-
+// app.use(cors())
+// // app.get('/customer/get-products',(req, res)=>{
+// //   res.json({
+// //     msg:"hello"
+// //   })
+// // })
 // app.use('/customer',customer);
 // app.use('/admin',admin);
 // app.use('/cashier',cashier);
@@ -98,101 +105,174 @@
 
 
 
-// // app.use('/search',searchProduct);
-// // app.use('/',homeUrl);
-// // app.post('/customer',(req,res)=>{
-// //     console.log(req.body);
-// //     const obj=req.body;
-// //     const insert="insert into customer values(?,?,?,?,?,?)";
-// //     connection.query(insert,[obj.CustomerID, obj.FirstName, obj.LastName, obj.Email, obj.Phone, obj.NumberOfTimesVisited],(err,result)=>{
-// //         if(err){
-// //             console.log(err);
-// //             return;
-// //         }
-// //         console.log("succesffulyy added.", result );
-// //     })
-// //     res.send('<h1>customer register successfully</h1>');
+// // // app.use('/search',searchProduct);
+// // // app.use('/',homeUrl);
+// // // app.post('/customer',(req,res)=>{
+// // //     console.log(req.body);
+// // //     const obj=req.body;
+// // //     const insert="insert into customer values(?,?,?,?,?,?)";
+// // //     connection.query(insert,[obj.CustomerID, obj.FirstName, obj.LastName, obj.Email, obj.Phone, obj.NumberOfTimesVisited],(err,result)=>{
+// // //         if(err){
+// // //             console.log(err);
+// // //             return;
+// // //         }
+// // //         console.log("succesffulyy added.", result );
+// // //     })
+// // //     res.send('<h1>customer register successfully</h1>');
 
-// // })
+// // // })
 
 
-// // app.get('/product',(req,res)=>{
-// //     //query from database.
-// //     connection.query("select * from product",(err, result)=>{
-// //         if(err)
-// //         {
-// //             console.log(err);
-// //             return;
-// //         }
-// //         console.log(result);
-// //         res.render('product',{
-// //             products: result
-// //         });
-// //     });
+// // // app.get('/product',(req,res)=>{
+// // //     //query from database.
+// // //     connection.query("select * from product",(err, result)=>{
+// // //         if(err)
+// // //         {
+// // //             console.log(err);
+// // //             return;
+// // //         }
+// // //         console.log(result);
+// // //         res.render('product',{
+// // //             products: result
+// // //         });
+// // //     });
 
-// //     // res.render('product',{
-// //     //         products: result
-// //     //     });
-// //     //yahaan error aaega. kiuki query is a async func by default so
-// //     //and also ReferenceError: result is not defined
+// // //     // res.render('product',{
+// // //     //         products: result
+// // //     //     });
+// // //     //yahaan error aaega. kiuki query is a async func by default so
+// // //     //and also ReferenceError: result is not defined
  
+// // // });
+
+
+
+// // // connection.connect((err)=>{
+// // //     if(err){console.log(err);}
+// // //     //console.log(connection,typeof(connection));
+// // // });
+
+// // const express = require('express');
+// // const bodyParser = require('body-parser');
+// // const path = require('path');
+// // const connection = require('./connection/connection');
+
+// // const app = express();
+// // const port = 3000;
+
+// // // Serve static files from the built frontend applications
+// // app.use('/customer', express.static(path.join(__dirname, '../frontend/customer/build')));
+// // // app.use('/cashier', express.static(path.join(__dirname, '../frontend/cashier/build')));
+// // // app.use('/admin', express.static(path.join(__dirname, '../frontend/admin/build')));
+
+// // // Parse incoming requests with JSON payloads
+// // app.use(bodyParser.json());
+// // app.use(bodyParser.urlencoded({ extended: true }));
+// // app.get('/get',(req, res)=>{
+// //   res.json({msg:"done"});
+// // })
+// // // API routes
+// // app.use('/api/customer', require('./routes/customer/customer'));
+// // // app.use('/api/admin', require('./routes/admin/admin'));
+// // // app.use('/api/cashier', require('./routes/cashier/cashier'));
+// // // app.use('/api', require('./routes/LoginAndSignin'));
+
+// // // Serve the admin frontend for /admin route
+// // // app.get('/admin/*', (req, res) => {
+// // //   res.sendFile(path.join(__dirname, '../frontend/admin/build/index.html'));
+// // // });
+
+// // // // Serve the cashier frontend for /cashier route
+// // // app.get('/cashier/*', (req, res) => {
+// // //   res.sendFile(path.join(__dirname, '../frontend/cashier/build/index.html'));
+// // // });
+
+// // // Serve the customer frontend for /customer route
+// // app.get('/customer/*', (req, res) => {
+// //   res.sendFile(path.join(__dirname, '../frontend/customer/build/index.html'));
+// // });
+
+
+// // // Start the server
+// // app.listen(port, () => {
+// //   console.log(`Server is listening on port ${port}`);
+// // });
+
+// // // Connect to the database
+// // connection.connect((err) => {
+// //   if (err) {
+// //     console.error('Database connection failed: ', err);
+// //   } else {
+// //     console.log('Database connected successfully');
+// //   }
 // // });
 
 
 
-// // connection.connect((err)=>{
-// //     if(err){console.log(err);}
-// //     //console.log(connection,typeof(connection));
-// // });
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const http = require('http');
+const { Server } = require('socket.io');
+const cors = require('cors');
 const connection = require('./connection/connection');
+const LoginAndSignin = require('./routes/LoginAndSignin');
+const customerRoutes = require('./routes/customer/customer');
+const adminRoutes = require('./routes/admin/admin');
+const cashierRoutes = require('./routes/cashier/cashier');
 
 const app = express();
-const port = 3000;
+const server = http.createServer(app);
+const io = new Server(server);
 
-// Serve static files from the built frontend applications
-app.use('/customer', express.static(path.join(__dirname, '../frontend/customer/build')));
-// app.use('/cashier', express.static(path.join(__dirname, '../frontend/cashier/build')));
-// app.use('/admin', express.static(path.join(__dirname, '../frontend/admin/build')));
+const port = process.env.PORT || 3000;
 
-// Parse incoming requests with JSON payloads
+// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
-// API routes
-app.use('/api/customer', require('./routes/customer/customer'));
-// app.use('/api/admin', require('./routes/admin/admin'));
-// app.use('/api/cashier', require('./routes/cashier/cashier'));
-// app.use('/api', require('./routes/LoginAndSignin'));
+// Serve static files
+app.use('/customer-build', express.static(path.join(__dirname, '../frontend/customer/build')));
 
-// Serve the admin frontend for /admin route
-// app.get('/admin/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../frontend/admin/build/index.html'));
-// });
+// API Routes
+app.use('/customer', customerRoutes);
+app.use('/admin', adminRoutes);
+app.use('/cashier', cashierRoutes);
+app.use('/', LoginAndSignin); // Assuming this handles root endpoint
 
-// // Serve the cashier frontend for /cashier route
-// app.get('/cashier/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../frontend/cashier/build/index.html'));
-// });
+// WebSocket setup
+const cash_cust = io.of('/cashier-customer');
 
-// Serve the customer frontend for /customer route
-app.get('/customer/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/customer/build/index.html'));
+cash_cust.on('connection', socket => {
+  console.log('A user connected');
+
+  socket.on('customerAddProduct', product => {
+    console.log('Customer added product:', product);
+    cash_cust.emit('productAdded', product);
+  });
+
+  socket.on('cashierAddProduct', product => {
+    console.log('Cashier added product:', product);
+    cash_cust.emit('productAdded', product);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
 });
 
 // Start the server
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });
 
 // Connect to the database
 connection.connect((err) => {
   if (err) {
-    console.error('Database connection failed: ', err);
+    console.error('Database connection failed:', err);
   } else {
-    console.log('Database connected successfully');
+    console.log('Connected to the database');
   }
 });

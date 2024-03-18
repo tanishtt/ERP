@@ -7,17 +7,17 @@ export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
 
   const fetchData = (value) => {
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
+    fetch("http://localhost:3000/customer/get-products")
+      .then((response) => {console.log(response);return response.json()})
       .then((json) => {
         console.log(json, value);
         const results = json.filter((item) => {
           return (
             value &&
             item &&
-            item.title &&
-            item.image &&
-            item.title.toLowerCase().includes(value.toLowerCase())
+            item.product_name &&
+            item.photos &&
+            item.product_name.toLowerCase().includes(value.toLowerCase())
           );
         });
         // Ensure setResults is a function before calling it

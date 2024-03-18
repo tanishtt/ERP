@@ -5,7 +5,7 @@ const {handlePayment}= require('../../controllers/payments/payment')
 
 
 // router.get('/',handleCustomerPage);
-router.post('/',getProducts);
+router.get('/get-products',getProducts);
 // router.post('/orderSubmit', handleOrderSubmit);
 // router.post('/payment',handlePayment);
 router.post('payment/create-order',)
