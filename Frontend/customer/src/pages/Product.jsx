@@ -24,14 +24,18 @@ const Product = () => {
     const getProduct = async () => {
       setLoading(true);
       setLoading2(true);
-      const response = await fetch(`http://localhost:3000/customer/get-products/${product_id}`);
+      console.log(id, typeof(id));
+      const product_id=Number(id);
+      const response = await fetch(`http://localhost:3000/customer/get-product-by-id/${id}`);
       const data = await response.json();
+      console.log(data);
       setProduct(data);
       setLoading(false);
       const response2 = await fetch(
-        `http://localhost:3000/customer/get-products/${data.category_id}`
+        `http://localhost:3000/customer/get-category-by-id/${data.category_id}`
       );
       const data2 = await response2.json();
+      console.log(data2);
       setSimilarProducts(data2);
       setLoading2(false);
     };
@@ -78,10 +82,10 @@ const Product = () => {
             <div className="col-md-6 col-md-6 py-5">
               <h4 className="text-uppercase text-muted">{product.category_id}</h4>
               <h1 className="display-5">{product.product_name}</h1>
-              // <p className="lead">
+              {/* // <p className="lead">
               //   {product.rating && product.rating.rate}{" "}
               //   <i className="fa fa-star"></i>
-              // </p>
+              // </p> */}
               <h3 className="display-6  my-4">${product.price}</h3>
               <p className="lead">{product.description}</p>
               <button
@@ -140,7 +144,7 @@ const Product = () => {
                   />
                   <div className="card-body">
                     <h5 className="card-title">
-                      {item.product_name.substring(0, 15)}...
+                      {item.product_name}...
                     </h5>
                   </div>
                   {/* <ul className="list-group list-group-flush">

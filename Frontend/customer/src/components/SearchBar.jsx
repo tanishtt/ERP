@@ -16,7 +16,6 @@ export const SearchBar = ({ setResults }) => {
         const results = json.filter((item) => {
           return (
             value &&
-            item &&
             item.product_name &&
             item.photos &&
             item.product_name.toLowerCase().includes(value.toLowerCase())
