@@ -1,0 +1,19 @@
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+  
+  .DashboardCard {
+    flex: 1;
+    width: 200%;
+  }
+
+  /* .app{
+    background-color: #e6e3e3;
+  } */

@@ -1,3 +1,5 @@
+// Cart.jsx
+
 import React from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector, useDispatch } from "react-redux";

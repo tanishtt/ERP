@@ -41,8 +41,8 @@ async function handleOrderSubmit(req, res) {
         console.log(result);
         
 
-        if (!result) {
-            const createCustomer = "insert into customers values (?,?,?)";
+        if (result.length==0) {
+            const createCustomer = "insert into customers (customer_name,email,phone) values (?,?,?)";
             connection.query(createCustomer, [customerName, customerEmail, customerPhone], (err, result) => {
                 if (err) {
                     console.log(err);
@@ -66,7 +66,7 @@ async function handleOrderSubmit(req, res) {
     console.log(customerDetail);
     console.log(productDetail);
 
-    console.log(productsString);
+    console.log("product string",productsString);
 
     const sql = `
         SET @products = '${productsString}';
@@ -106,11 +106,14 @@ async function handleOrderSubmit(req, res) {
             console.log('Order inserted successfully',result,OrderId);
             OrderId= result.insertId;
             console.log(OrderId);
-            return res.render('payment',{
+            return res.json({
                 OrderId:OrderId,
                 customerDetail:customerDetail,
                 amount:totalPrice
             });
+
+
+            
 //-----------------//here we will redirect to payment page with all these details. 
         });
     });

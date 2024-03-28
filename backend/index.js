@@ -228,6 +228,10 @@ const io = new Server(server);
 
 const port = process.env.PORT || 3000;
 
+app.set('views', path.resolve('./views'));//represents the setting key for the views directory.
+app.set('view engine', 'ejs')
+
+
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

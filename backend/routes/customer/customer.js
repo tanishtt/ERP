@@ -13,7 +13,7 @@ router.get('/get-product-by-id/:productId', getProductById);
 router.get('/get-category-by-id/:categoryId', getProductsByCategoryId);
 
 
-// router.post('/orderSubmit', handleOrderSubmit);
+ router.post('/orderSubmit', handleOrderSubmit);
 // router.post('/payment',handlePayment);
 router.post('payment/create-order',)
 

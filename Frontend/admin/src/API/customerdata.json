@@ -1,0 +1,31 @@
+{
+   "main":{
+    "customers": [
+        {
+          "customer_id": 1,
+          "customer_name": "John Doe",
+          "email": "john@example.com",
+          "phone": "1234567890"
+        },
+        {
+          "customer_id": 2,
+          "customer_name": "Jane Doe",
+          "email": "jane@example.com",
+          "phone": "0987654321"
+        },
+        {
+          "customer_id": 3,
+          "customer_name": "tanish",
+          "email": "tan1@tan1",
+          "phone": "1230987345"
+        },
+        {
+          "customer_id": 4,
+          "customer_name": "tanish2",
+          "email": "tan2@tan2",
+          "phone": "6478378298"
+        }
+      ]
+   }
+  }
+  
