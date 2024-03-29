@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1faea; /* Set your desired background color here */
+  }
+
+  .navbar {
+    width: 100%;
+    
+    background-color: #50a74f !important;
+  }
+  
+
+  .contain{
+    padding-top: 1%;
+    background: linear-gradient(to top, #19624e);
+    text-align: center;
+    padding-bottom: 2%;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    margin-left: 200px;
+    margin-bottom: '2px' !important;
+  }
+  
+  .search-bar input {
+    flex: 1;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-right: 8px;
+  }
+  
+  .search-bar button {
+    padding: 8px;
+    background-color: #b53535;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .search-bar button.round-button {
+    padding: 8px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 0%; /* Make it round */
+    cursor: pointer;
+    margin-left: 8px; /* Add some margin to separate it from the search button */
+  }
+  
+  .search-bar button:hover {
+    background-color: #000000;
+  }
+  
+  .search-bar button.round-button:hover {
+    background-color: #45a049;
+  }
+
+  .rows{
+    padding-top: 5%;
+    background: #ffffff;
+    text-align: center;
+    padding-bottom: 7%;
+    margin-left: '10px';
+    margin-right: '17px';
+  }
+
+  .cart {
+    width: 100%;
+    background: linear-gradient(to top, #cdfff6, #51aa9a);;
+  }
+
+  .addtocartbtn{
+    width:'30px';
+    height:'20px';
+    background-color: #000000;
+  }
+
+
+  .contact-form-box {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    background-color: #e2efeb ;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .container1 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 80px;
+  }
+  .box {
+    flex: 1;
+    height: 200px;
+  }
+  
+  .red {
+    background-color: red;
+  }
+  
+  .form-control{
+    background-color: #fffffff3;
+  }
+
+
+
+  
