@@ -6,7 +6,7 @@ const Register = () => {
         full_name: '',
         email: '',
         phone: '',
-        role: '',
+        role: 'cashier', // Default role
         username: '',
         password: ''
     });
@@ -25,15 +25,15 @@ const Register = () => {
             },
             body: JSON.stringify(formData)
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                // Add any further actions upon successful registration
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                // Handle any errors here
-            });
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // Add any further actions upon successful registration
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            // Handle any errors here
+        });
     };
 
     return (
@@ -52,6 +52,8 @@ const Register = () => {
                                 placeholder="Enter Your Name"
                                 style={{ width: '300px' }}
                                 name='full_name'
+                                value={formData.full_name}
+                                onChange={handleChange}
                             />
                         </div>
                         <div>
@@ -63,6 +65,8 @@ const Register = () => {
                                 placeholder="name@gmail.com"
                                 style={{ width: '300px' }}
                                 name='email'
+                                value={formData.email}
+                                onChange={handleChange}
                             />
                         </div>
                     </div>
@@ -78,6 +82,8 @@ const Register = () => {
                                 placeholder=""
                                 style={{ width: '300px' }}
                                 pattern="[0-9]{10}"
+                                value={formData.phone}
+                                onChange={handleChange}
                             />
                         </div>
                         <div>
@@ -87,9 +93,11 @@ const Register = () => {
                                 id="role"
                                 style={{ width: '300px', marginLeft:'30px' }}
                                 name='role'
+                                value={formData.role}
+                                onChange={handleChange}
                             >
-                                <option value="cashier">Cashier</option>
-                                <option value="admin">Admin</option>
+                                <option value="cashier">cashier</option>
+                                <option value="admin">admin</option>
                             </select>
                         </div>
 
@@ -97,7 +105,7 @@ const Register = () => {
 
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', marginTop: '20px' }}>
                         <div style={{ marginRight: '20px' }}>
-                            <label htmlFor="Email" style={{ marginLeft: '25px' }}>Cashier ID</label>
+                            <label htmlFor="Email" style={{ marginLeft: '25px' }}>Cashier username</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -105,6 +113,8 @@ const Register = () => {
                                 placeholder=""
                                 style={{ width: '300px' }}
                                 name='username'
+                                value={formData.username}
+                                onChange={handleChange}
                             />
                         </div>
                         <div>
@@ -116,17 +126,17 @@ const Register = () => {
                                 placeholder="Password"
                                 style={{ width: '300px' }}
                                 name='password'
+                                value={formData.password}
+                                onChange={handleChange}
                             />
                         </div>
                     </div>
 
-
-
                     <div className="my-3" style={{ marginLeft: '225px', paddingTop: '20px' }}>
-                        <p>Already has an account? <Link to="/login" className="text-decoration-underline text-info">Login</Link> </p>
+                        <p>Already have an account? <Link to="/login" className="text-decoration-underline text-info">Login</Link> </p>
                     </div>
                     <div className="text-center" style={{ marginRight: '90px' }}>
-                        <button class="my-2 mx-auto btn btn-dark" type="submit">
+                        <button className="my-2 mx-auto btn btn-dark" type="submit">
                             Register
                         </button>
                     </div>
@@ -137,8 +147,3 @@ const Register = () => {
 }
 
 export default Register;
-
-
-
-
-
