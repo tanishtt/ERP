@@ -12,6 +12,7 @@ async function handleSignUp(req, res) {
             return;
         }
         console.log('checkResult:',result[0].count);
+        console.log('user details',username,password,role,full_name,email,phone);
         if(result[0].count>0){
             return res.status(400).json({ error: 'Username or email already exists' });
 
