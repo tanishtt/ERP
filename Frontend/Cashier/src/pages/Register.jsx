@@ -32,7 +32,8 @@ const Register = () => {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            // Add any further actions upon successful registration
+            window.alert('Registration successful! Please login.');
+            navigate('/login');
         })
         .then(data => {
             console.log('Success:', data);
