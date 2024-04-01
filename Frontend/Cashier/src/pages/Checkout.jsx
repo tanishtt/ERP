@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { Footer, Navbar } from "../components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; 
+
+
 const Checkout = () => {
   const state = useSelector((state) => state.handleCart);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const EmptyCart = () => {
     return (
@@ -14,6 +18,16 @@ const Checkout = () => {
             <Link to="/" className="btn btn-outline-dark mx-4">
               <i className="fa fa-arrow-left"></i> Continue Shopping
             </Link>
+            {isLoggedIn ? (
+          <div className="buttons text-center" style={{ borderColor: 'white', color: 'white' }}>
+            <NavLink to="/cart" className="btn btn-outline-dark m-2" style={{ borderColor: 'white', color: 'white' }}>
+              <i className="fa fa-cart-shopping mr-1" ></i> Checkout ({state.length})
+            </NavLink>
+          </div>
+        ) : (
+
+          <p className="text-danger">Please login to continue</p>
+        )}
           </div>
         </div>
       </div>
