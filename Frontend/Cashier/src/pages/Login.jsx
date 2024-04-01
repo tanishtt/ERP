@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { Footer, Navbar } from "../components";
+import { Footer } from "../components";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
