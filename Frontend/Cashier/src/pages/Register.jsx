@@ -1,11 +1,44 @@
-import React from 'react'
-
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 const Register = () => {
+    const [formData, setFormData] = useState({
+        full_name: '',
+        email: '',
+        phone: '',
+        role: '',
+        username: '',
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetch('http://localhost:3000/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // Add any further actions upon successful registration
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            // Handle any errors here
+        });
+    };
+
     return (
         <div style={{ marginTop: '100px', backgroundColor: 'white', width: '800px', marginLeft: '325px' }}>
-
-            <div class="row my-4 h-100">
+            <div className="row my-4 h-100">
                 <h1 className="text-center" style={{ marginTop: '30px' }}>Register</h1>
                 <form style={{ width: '1000px', marginLeft: '40px', marginTop:'30px' }} method='post' action='http://localhost:3000/signup'>
 
@@ -97,11 +130,13 @@ const Register = () => {
                     </div>
                 </form>
             </div>
-
-
-
         </div>
     )
 }
 
 export default Register;
+
+
+
+
+
