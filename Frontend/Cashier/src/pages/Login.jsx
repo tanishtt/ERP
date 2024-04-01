@@ -14,18 +14,19 @@ const Login = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'cashierid') {
+    if (name === 'username') {
       setCashierId(value);
-    } else if (name === 'cashierpassword') {
+    } else if (name === 'password') {
       setCashierPassword(value);
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+            e.preventDefault();
     // Extract data from the form
     const formData = {
-      cashierId: cashierId,
-      cashierPassword: cashierPassword
+      username: cashierId,
+      password: cashierPassword
     };
 
     // Post form data using Fetch API
@@ -59,10 +60,10 @@ const Login = () => {
           <h1 className="text-center" style={{ marginLeft: '150px', marginBottom: '40px' }}>Login</h1>
           <div className="my-3">
             <input
-              type="email"
+              type="text"
               className="form-control"
               id="cashierid"
-              name="cashierid"
+              name="username"
               placeholder="name@example.com"
               style={{ marginLeft: '150px', width: '300px' }}
               onChange={handleInputChange}
@@ -74,7 +75,7 @@ const Login = () => {
               type={showPassword ? 'text' : 'password'}
               className="form-control pr-5"
               id="cashierpassword"
-              name="cashierpassword"
+              name="password"
               placeholder="Password"
               style={{ width: '300px', marginLeft: '150px' }}
               onChange={handleInputChange}

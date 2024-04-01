@@ -30,13 +30,8 @@ const Register = () => {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-<<<<<<< HEAD
-            
-            // Add any further actions upon successful registration
-=======
             window.alert('Registration successful! Please login.');
             navigate('/login');
->>>>>>> 9fbac18d12dc2ac85ccc0412d593e164d36ce13f
         })
         .catch((error) => {
             console.error('Error:', error);

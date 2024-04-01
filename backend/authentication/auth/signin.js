@@ -16,13 +16,13 @@ async function handleSignIn(req, res){
 
 
         if (results.length === 0 ){
-            return res.status(401).json({ error: 'Invalid username or password' });
+            return res.status(401).json({ error: 'Invalid username or password-1' });
         }
 
         const passwordMatch= await bcrypt.compare(password, results[0].password);
 
         if(!passwordMatch){
-            return res.status(401).json({ error: 'Invalid username or password' });
+            return res.status(401).json({ error: 'Invalid username or password-2' });
         }
 
         const token=setUser(user);
