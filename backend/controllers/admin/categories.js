@@ -33,7 +33,24 @@ async function handleDeleteCategories(req, res) {
     }
 }
 
+
+async function handleCategoryDropDown(req, res){
+const sql = 'SELECT category_id, category_name FROM categories';
+
+  // Execute the query
+  connection.query(sql, (error, results) => {
+    if (error) {
+      // Handle error
+      console.error('Error executing query:', error);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    // Send the results back as JSON response
+    res.status(200).json(results);
+  });
+}
 module.exports = {
     handleAddCategories,
-    handleDeleteCategories
+    handleDeleteCategories,
+    handleCategoryDropDown
 };

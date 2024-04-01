@@ -29,6 +29,7 @@ const Register = () => {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
+            
             // Add any further actions upon successful registration
         })
         .catch((error) => {
