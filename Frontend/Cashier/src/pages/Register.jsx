@@ -82,7 +82,7 @@ const Register = () => {
 
 
 
-                    <div className="my-3" style={{ marginLeft: '125px' }}>
+                    <div className="my-3" style={{ marginLeft: '225px' , paddingTop:'20px'}}>
                         <p>Already has an account? <Link to="/login" className="text-decoration-underline text-info">Login</Link> </p>
                     </div>
                     <div className="text-center" style={{marginRight:'90px'}}>
