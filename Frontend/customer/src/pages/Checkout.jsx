@@ -19,7 +19,9 @@ const Customer = () => {
     }));
   };
 
-  const continueToCheckout = async () => {
+  const continueToCheckout = async (e) => {
+    e.preventDefault(); // Prevent form submission and page reload
+
     const data = {
       customer: customerDetails,
       products: state.map((item) => ({
@@ -69,7 +71,7 @@ const Customer = () => {
   const ShowCheckout = () => {
     return (
       <div className="container py-5">
-        <form>
+        <form onSubmit={continueToCheckout}> {/* Use onSubmit event handler */}
           <div className="row">
             <div className="col-md-6">
               <label htmlFor="name">Name</label>
@@ -102,7 +104,7 @@ const Customer = () => {
               />
             </div>
           </div>
-          <button onClick={continueToCheckout}>Continue to checkout</button>
+          <button type="submit">Continue to checkout</button> {/* Change button type to submit */}
         </form>
       </div>
     );

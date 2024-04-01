@@ -7,7 +7,7 @@ const Register = () => {
             
                 <div class="row my-4 h-100">
                 <h1 className="text-center" style={{marginTop:'30px'}}>Register</h1>
-                        <form style={{width:'400px', marginLeft:'100px'}}>
+                        <form style={{width:'400px', marginLeft:'100px'}} action="/" method="post">
                             <div class="form my-3">
                                 <label for="Name" style={{marginLeft:'25px'}}>Full Name</label>
                                 <input
