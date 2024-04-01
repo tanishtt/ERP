@@ -1,22 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { Footer, Navbar } from "../components";
+import { Footer } from "../components";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [cashierId, setCashierId] = useState('');
   const [cashierPassword, setCashierPassword] = useState('');
- 
 
-
-  const [cashierCredentials, setCashierCredentials] = useState([
-    { id: 'shreeya', password: '1234' },
-    { id: 'vaishnav', password: '987654321' }
-  ]);
-  
- 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -30,15 +21,35 @@ const Login = () => {
     }
   };
 
-  // Function to check if login button should be enabled
-  const isLoginDisabled = () => {
-    return !cashierCredentials.some(credential => credential.id === cashierId && credential.password === cashierPassword);
-  };
-
   const handleLogin = () => {
-    // Perform login logic here
-    // Once logged in successfully, set the cashierId
-    setCashierId(document.getElementById('cashier').value);
+    // Extract data from the form
+    const formData = {
+      cashierId: cashierId,
+      cashierPassword: cashierPassword
+    };
+
+    // Post form data using Fetch API
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle response data
+        console.log(data);
+        // Assuming the response contains a token
+        localStorage.setItem('token', data.token);
+        // Clear form fields
+        setCashierId('');
+        setCashierPassword('');
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error:', error);
+      });
   };
 
   return (
@@ -83,9 +94,9 @@ const Login = () => {
           </div>
 
           <div className="text-center" style={{ marginLeft: '170px' }}>
-            <Link to="/" className={`btn btn-dark ${isLoginDisabled() ? 'disabled' : ''}`} style={{ width: '100px' }}>
+            <button className="btn btn-dark" style={{ width: '100px' }} onClick={handleLogin}>
               Login
-            </Link>
+            </button>
           </div>
 
         </form>

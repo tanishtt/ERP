@@ -69,6 +69,7 @@ const Navbar = () => {
                   <i className="fa fa-cart-shopping mr-1" ></i> Checkout ({state.length})
                 </NavLink>
               </div>
+              
               <div className="buttons text-center" style={{ borderColor: 'white', color: 'white' }}>
                 <NavLink to="/Login" className="btn btn-outline-dark m-2" style={{ borderColor: 'white', color: 'white' }}>
                   <i className="fa fa-cart-shopping mr-1" ></i> Login
@@ -80,9 +81,9 @@ const Navbar = () => {
         </nav>
       </div>
 
-
+      <form>
       <div className="hero border-2">
-        {/* <div className="contain" style={{ background: '#f1faea' }}> */}
+        
         <div className="container1">
           {/* {BOX 1} */}
           <div className="box1" style={{ width: "400px", marginLeft: '40px' }}>
@@ -147,20 +148,12 @@ const Navbar = () => {
               <div>
                 <label htmlFor="cashier">Cashier:</label>
               </div>
-              <div style={{ paddingLeft: '60px', width: '260px' }}>
+              <div style={{ paddingLeft: '85px', width: '283px' }}>
                 <select className="form-control" id="number">
                   <option value="option1">Cashier 1</option>
                   <option value="option2">Cashier 2</option>
                   <option value="option3">Cashier 3</option>
                 </select>
-                {/* <input 
-            type="text" 
-            className="form-control" 
-            id="cashier" 
-            placeholder="cashier" 
-            value={cashierId} 
-            onChange={handleInputChange} 
-          /> */}
               </div>
             </div>
 
@@ -183,14 +176,6 @@ const Navbar = () => {
                 <label htmlFor="totalAmount" style={{ marginLeft: '10px' }}>Total Amount:</label>
               </div>
               <div style={{ width: '250px', height: '100px' }}>
-                {/* <input
-                    type="text"
-                    className="form-control"
-                    id="totalAmount"
-                    placeholder="Amount"
-                    defaultValue="0.00"
-                    style={{ fontSize: '36px' }} // Adjust the font size here
-                  /> */}
                 <input
                   type="text"
                   className="form-control"
@@ -219,7 +204,8 @@ const Navbar = () => {
           <button className="search-bar button">Voice</button>
         </div>
       </div>
-      {/* </div> */}
+      </form>
+      
 
       {/* Display search results using SearchResultsList */}
       {results && results.length > 0 && <SearchResultsList results={results} />}
