@@ -40,7 +40,7 @@ const Register = () => {
         <div style={{ marginTop: '100px', backgroundColor: 'white', width: '800px', marginLeft: '325px' }}>
             <div className="row my-4 h-100">
                 <h1 className="text-center" style={{ marginTop: '30px' }}>Register</h1>
-                <form style={{ width: '1000px', marginLeft: '40px', marginTop:'30px' }} method='post' action='http://localhost:3000/signup'>
+                <form style={{ width: '1000px', marginLeft: '40px', marginTop:'30px' }} onSubmit={handleSubmit}>
 
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                         <div style={{ marginRight: '20px' }}>
