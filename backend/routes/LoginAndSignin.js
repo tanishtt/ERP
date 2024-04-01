@@ -1,9 +1,9 @@
 const express=require('express');
 
 const router= express.Router();
-const signup=require('../authentication/auth/signup');
+const {handleSignUp}=require('../authentication/auth/signup');
 
-router.post('/signup',signup);
+router.post('/signup',handleSignUp);
 
 
 
