@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom'; // Updated import to useNavigate
 import { Footer } from "../components";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
@@ -7,6 +7,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [cashierId, setCashierId] = useState('');
   const [cashierPassword, setCashierPassword] = useState('');
+  const navigate = useNavigate(); // useNavigate hook
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -46,6 +47,7 @@ const Login = () => {
         // Clear form fields
         setCashierId('');
         setCashierPassword('');
+        navigate('/Home'); // Navigate to home page
       })
       .catch(error => {
         // Handle error
