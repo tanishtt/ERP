@@ -3,41 +3,11 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 const Register = () => {
     return (
-        <div style={{ marginTop: '100px', backgroundColor: 'white', width: '600px', marginLeft: '425px' }}>
-            
-                <div class="row my-4 h-100">
-                <h1 className="text-center" style={{marginTop:'30px'}}>Register</h1>
-                        <form style={{width:'400px', marginLeft:'100px'}} action="/" method="post">
-                            <div class="form my-3">
-                                <label for="Name" style={{marginLeft:'25px'}}>Full Name</label>
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    id="Name"
-                                    placeholder="Enter Your Name"
-                                />
-                            </div>
-                            <div class="form my-3">
-                                <label for="Email" style={{marginLeft:'25px'}}>Email address</label>
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    id="Email"
-                                    placeholder="name@example.com"
-                                />
-                            </div>
-                            <div class="form my-3">
-                                <label for="Email" style={{marginLeft:'25px'}}>Cashier ID</label>
-                                <input
-                                    type="email"
-                                    className="form-control"
-                                    id="cashierid"
-                                    name="cashierid"
-                                    placeholder="name@example.com"
+        <div style={{ marginTop: '100px', backgroundColor: 'white', width: '800px', marginLeft: '325px' }}>
 
             <div class="row my-4 h-100">
                 <h1 className="text-center" style={{ marginTop: '30px' }}>Register</h1>
-                <form style={{ width: '1000px', marginLeft: '40px', marginTop:'30px' }}>
+                <form style={{ width: '1000px', marginLeft: '40px', marginTop:'30px' }} method='post' action='http://localhost:3000/signup'>
 
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                         <div style={{ marginRight: '20px' }}>
@@ -48,6 +18,7 @@ const Register = () => {
                                 id="Name"
                                 placeholder="Enter Your Name"
                                 style={{width:'300px'}}
+                                name='full_name'
                             />
                         </div>
                         <div>
@@ -58,6 +29,7 @@ const Register = () => {
                                 id="Email"
                                 placeholder="name@gmail.com"
                                 style={{width:'300px'}}
+                                name='email'
                             />
                         </div>
                     </div>
@@ -66,12 +38,13 @@ const Register = () => {
                         <div style={{ marginRight: '20px' }}>
                             <label htmlFor="contact" style={{ marginLeft: '25px' }}>Contact Number</label>
                             <input
-                                type="tel"
+                                type="text"
                                 className="form-control"
                                 id="contactnumber"
-                                name="contactnumber"
+                                name="phone"
                                 placeholder=""
                                 style={{width:'300px'}}
+                                pattern="[0-9]{10}"
                             />
                         </div>
                         <div>
@@ -82,6 +55,7 @@ const Register = () => {
                                 id="role"
                                 placeholder=""
                                 style={{width:'300px'}}
+                                name='role'
                             />
                         </div>
                     </div>
@@ -90,12 +64,12 @@ const Register = () => {
                         <div style={{ marginRight: '20px' }}>
                             <label htmlFor="Email" style={{ marginLeft: '25px' }}>Cashier ID</label>
                             <input
-                                type="email"
+                                type="text"
                                 className="form-control"
                                 id="cashierid"
-                                name="cashierid"
                                 placeholder=""
                                 style={{width:'300px'}}
+                                name='username'
                             />
                         </div>
                         <div>
@@ -106,6 +80,7 @@ const Register = () => {
                                 id="cashierpassword"
                                 placeholder="Password"
                                 style={{width:'300px'}}
+                                name='password'
                             />
                         </div>
                     </div>
@@ -129,4 +104,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Register;
