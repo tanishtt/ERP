@@ -62,6 +62,7 @@ async function handleGetAllProducts(req, res){
                 console.error('Error fetching weekly customers:', err);
                 return res.status(500).json({ error: 'Internal server error' });
             }
+            console.log(results)
         return res.status(200).json({
             allProducts:results
         })
