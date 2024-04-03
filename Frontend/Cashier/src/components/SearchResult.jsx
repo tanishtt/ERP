@@ -21,20 +21,12 @@ export const SearchResult = ({ result, addProduct }) => {
   return (
     
       <div className="search-result" onClick={handleAddToCart} style={{width:'100px'}}>
-          <div id={result.id} className="col-md-4 col-sm-6 col-xs-8 col-12" style={{ width: '100', marginLeft: '400px' }}>
+          <div id={result.product_id} className="col-md-4 col-sm-6 col-xs-8 col-12" style={{ width: '100', marginLeft: '400px' }}>
             <div className="card text-center h-100" style={{width:'max-content'}}>
               <div className="card-body d-flex align-items-center justify-content-between" style={{padding:'0%'}}>
-                {/* <div className="image" style={{width:'110px'}}>
-                <img
-                  className="card-img-top p-3"
-                  src={result.image}
-                  alt="Card"
-                  style={{height: "120px", width: "30px;"}}
-                />
-                </div> */}
                 <div style={{width:'240px'}}>
                 <h5 className="card-title mb-0" style={{fontSize:'16px'}}>
-                  {result.title.substring(0, 32)}...
+                  {result.product_name.substring(0, 32)}...
                 </h5>
                 </div>
 
@@ -43,23 +35,6 @@ export const SearchResult = ({ result, addProduct }) => {
                 </ul>
 
                 <div className="card-body" style={{ width: '16vw', height: '4vw', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1px !important' }}>
-                  {/* <Link to={"/product/" + result.id} className="btn btn-dark m-1" style={{ width: "100px", height: "30px" }}>
-                    Buy Now
-                  </Link> */}
-                  {/* <Link
-                    to={"/product/" + result.id}
-                    className="btn btn-dark m-1"
-                    style={{
-                      width: '95px',
-                      height: '30px',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      fontSize: '14px', // Adjust the font size as desired
-                    }}
-                  >
-                    Buy Now
-                  </Link> */}
                   <button
                     className="btn btn-dark"
                     onClick={handleAddToProduct}
