@@ -7,7 +7,7 @@ const {handleAddProduct,
 const { exportToExcelProducts}= require('../../controllers/admin/exporttoexcel')
 
 
-router.get('/',handleGetAllProducts);
+router.get('/get-products',handleGetAllProducts);
 
 // Route for adding a product
 router.post('/add-product', handleAddProduct);

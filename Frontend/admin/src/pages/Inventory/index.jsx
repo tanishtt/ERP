@@ -9,7 +9,7 @@ function Inventory1() {
   useEffect(() => {
     setLoading(true);
     getInventory().then((res) => {
-      setDataSource(res.products);
+      setDataSource(res.allProducts);
       setLoading(false);
     });
   }, []);

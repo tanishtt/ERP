@@ -7,7 +7,7 @@ export const getRevenue = () => {
 };
 
 export const getInventory = () => {
-  return fetch("https://dummyjson.com/products").then((res) => res.json());
+  return fetch("http://localhost:3000/admin/products/get-products").then((res) => res.json());
 };
 
 export const getCustomers = () => {
