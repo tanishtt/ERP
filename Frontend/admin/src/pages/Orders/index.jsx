@@ -24,26 +24,34 @@ function Orders1() {
         loading={loading}
         columns={[
           {
-            title: "Title",
-            dataIndex: "title",
+            title: "Order Id",
+            dataIndex: "order_id",
           },
           {
-            title: "Price",
+            title: "Customer Id",
+            dataIndex: "customer_id",
+          },
+          {
+            title: "Products Ordered",
+            dataIndex: "products_details",
+          },
+          {
+            title: "Total Items",
+            dataIndex: "products_details.length",
+          },
+          {
+            title: "Total Bill Amount",
             dataIndex: "price",
             render: (value) => <span>₹{value}</span>,
           },
           {
-            title: "DiscountedPrice",
-            dataIndex: "discountedPrice",
+            title: "Discounted Amount",
+            dataIndex: "discount_price",
             render: (value) => <span>₹{value}</span>,
           },
           {
-            title: "Quantity",
-            dataIndex: "quantity",
-          },
-          {
-            title: "Total",
-            dataIndex: "total",
+            title: "Order Date",
+            dataIndex: "date",
           },
         ]}
         dataSource={dataSource}
