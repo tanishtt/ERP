@@ -7,7 +7,7 @@ export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
 
   const fetchData = (value) => {
-    fetch("https://fakestoreapi.com/products")
+    fetch("http://localhost:3030/products")
       .then((response) => response.json())
       .then((json) => {
         console.log(json, value);
@@ -15,9 +15,9 @@ export const SearchBar = ({ setResults }) => {
           return (
             value &&
             item &&
-            item.title &&
-            item.image &&
-            item.title.toLowerCase().includes(value.toLowerCase())
+            item.product_name &&
+            item.photos &&
+            item.product_name.toLowerCase().includes(value.toLowerCase())
           );
         });
         // Ensure setResults is a function before calling it
@@ -42,7 +42,7 @@ export const SearchBar = ({ setResults }) => {
 
   return (
     <div className="input-wrapper" style={{ width: '1500px', marginLeft: '150px' }}>
-      <FaSearch id="search-icon" />
+      <FaSearch product_id="search-icon" />
       <input
         placeholder="Search Your Items here..."
         value={input}
