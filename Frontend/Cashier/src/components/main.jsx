@@ -121,7 +121,7 @@ const Cart = () => {
 
     return (
       <div className="container">
-        <div className="boxes">
+      <div className="boxes">
           <div className="container2" style={{ width: "900px" }}>
             <div className="row d-flex justify-content-center my-4">
               <div className="col-md-8" style={{ width: "1500px" }}>
@@ -165,7 +165,7 @@ const Cart = () => {
             </div>
           </div>
         </div>
-
+        
 
         <div className="boxes2" style={{ width: "650px", marginLeft: "10px" }}>
           <div className="card mb-5" style={{ width: "400px" }}>
