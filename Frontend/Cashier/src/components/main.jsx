@@ -101,9 +101,10 @@ const Cart = () => {
         products: cartItems,
         price: calculateTotalAmount().toFixed(2),
         discount_price: calculateDiscountAmount(),
+        
       };
 
-      fetch("http://localhost:3031/checkout", {
+      fetch("http://localhost:3000/cashier/handleOrderSubmit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

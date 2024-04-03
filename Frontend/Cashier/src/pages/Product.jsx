@@ -24,14 +24,18 @@ const Product = () => {
     const getProduct = async () => {
       setLoading(true);
       setLoading2(true);
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+      console.log(id, typeof(id));
+      const product_id=Number(id);
+      const response = await fetch(`http://localhost:3000/cashier/get-product-by-id/${id}`);
       const data = await response.json();
+      console.log(data);
       setProduct(data);
       setLoading(false);
       const response2 = await fetch(
-        `https://fakestoreapi.com/products/category/${data.category}`
+        `http://localhost:3000/cashier/get-category-by-id/${data.category_id}`
       );
       const data2 = await response2.json();
+      console.log(data2);
       setSimilarProducts(data2);
       setLoading2(false);
     };

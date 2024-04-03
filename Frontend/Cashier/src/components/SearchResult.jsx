@@ -10,11 +10,13 @@ export const SearchResult = ({ result, addProduct }) => {
 
   const handleAddToCart = () => {
     dispatch(addCart(result));
+    console.log("a", result);
   };
 
   const handleAddToProduct = () => {
     if (typeof addProduct === 'function') {
       addProduct(result);
+      console.log("b",result);
     }
   };
 

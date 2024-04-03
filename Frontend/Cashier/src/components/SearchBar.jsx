@@ -7,7 +7,7 @@ export const SearchBar = ({ setResults }) => {
   const [input, setInput] = useState("");
 
   const fetchData = (value) => {
-    fetch("http://localhost:3030/products")
+    fetch("http://localhost:3000/cashier/get-products")
       .then((response) => response.json())
       .then((json) => {
         console.log(json, value);

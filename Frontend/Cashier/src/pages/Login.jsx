@@ -47,7 +47,7 @@ const Login = () => {
         // Clear form fields
         setCashierId('');
         setCashierPassword('');
-        navigate('/Cart'); // Navigate to home page
+        navigate('/home'); // Navigate to home page
       })
       .catch(error => {
         // Handle error

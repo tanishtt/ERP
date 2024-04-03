@@ -15,12 +15,13 @@ async function handleOrderSubmit(req, res) {
     const customerEmail = customerDetail.email;
     const customerPhone = customerDetail.phone;
 
-    let totalPrice = 0;
-    for (let index = 0; index < productDetail.length; index++) {
-        const element = productDetail[index]['price'];
-        totalPrice += element;
-    }
-
+    // let totalPrice = 0;
+    // for (let index = 0; index < productDetail.length; index++) {
+    //     const element = productDetail[index]['price'];
+    //     totalPrice += element;
+    // }
+    const totalPrice= body.price;
+    const discountPrice=body.discount_price;
     
     
     const Customer = `select * from customers where email = '${customerEmail}'`;

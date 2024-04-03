@@ -22,7 +22,7 @@ export const Products = () => {
   useEffect(() => {
     const getProducts = async () => {
       setLoading(true);
-      const response = await fetch("https://fakestoreapi.com/products");
+      const response = await fetch(`http://localhost:3000/cashier/get-products`);
       if (componentMounted) {
         setData(await response.clone().json());
         setFilter(await response.json());
@@ -84,20 +84,20 @@ export const Products = () => {
 
         {filter.map((product) => {
           return (
-            <div id={product.id} key={product.id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4" style={{ width: '20%', margin:'5px' }}>
-              <div className="card text-center h-100" key={product.id}>
+            <div id={product.product_id} key={product.product_id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4" style={{ width: '20%', margin:'5px' }}>
+              <div className="card text-center h-100" key={product.product_id}>
                 <img
                   className="card-img-top p-3"
-                  src={product.image}
+                  src={product.photos}
                   alt="Card"
                   height={150}
                 />
                 <div className="card-body">
                   <h5 className="card-title">
-                    {product.title.substring(0, 12)}...
+                    {product.product_name}...
                   </h5>
                   <p className="card-text" style={{fontSize:'10px'}}>
-                    {product.description.substring(0, 90)}...
+                    {product.description}...
                   </p>
                 </div>
                 <ul className="list-group list-group-flush">
@@ -107,7 +107,7 @@ export const Products = () => {
 
                 <div className="card-body" style={{ width: '17vw', height: '4vw', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '5px !important'}}>
                   <Link
-                    to={"/product/" + product.id}
+                    to={"/product/" + product.product_id}
                     className="btn btn-dark m-1"
                     style={{
                       width: '95px',

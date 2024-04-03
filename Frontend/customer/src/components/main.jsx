@@ -46,7 +46,7 @@ const Cart = () => {
               <div className="col-md-8">
                 <div className="card mb-4">
                   <div className="card-header py-3">
-                    <h5 className="mb-0">Item List</h5>
+                    <h5 className="mb-0">Item Listt</h5>
                   </div>
                   <div className="card-body">
                     {state.map((item) => {
