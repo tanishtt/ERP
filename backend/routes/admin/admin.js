@@ -8,7 +8,7 @@ const{handleCategoryDropDown}= require('../../controllers/admin/categories')
 
 const router= express.Router();
 
-const allAdminRoutes= require('../admin/admin_routes')
+const allAdminRoutes= require('./admin_routes')
 
 
 router.use('/',authenticateUser, allAdminRoutes);
