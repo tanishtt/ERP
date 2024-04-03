@@ -22,41 +22,41 @@ function Inventory1() {
         loading={loading}
         columns={[
           {
-            title: "Thumbnail",
-            dataIndex: "thumbnail",
+            title: "Product Image",
+            dataIndex: "photos",
             render: (link) => {
               return <Avatar src={link} />;
             },
           },
           {
-            title: "Title",
-            dataIndex: "title",
+            title: "Product Name",
+            dataIndex: "product_name",
+          },
+          {
+            title: "Description",
+            dataIndex: "description",
           },
           {
             title: "Price",
             dataIndex: "price",
-            render: (value) => <span>${value}</span>,
+            render: (value) => <span>₹{value}</span>,
           },
+          // {
+          //   title: "Rating",
+          //   dataIndex: "rating",
+          //   render: (rating) => {
+          //     return <Rate value={rating} allowHalf disabled />;
+          //   },
+          // },
           {
-            title: "Rating",
-            dataIndex: "rating",
-            render: (rating) => {
-              return <Rate value={rating} allowHalf disabled />;
-            },
+            title: "Category",
+            dataIndex: "category_id",
           },
           {
             title: "Stock",
-            dataIndex: "stock",
+            dataIndex: "stock_quantity",
           },
 
-          {
-            title: "Brand",
-            dataIndex: "brand",
-          },
-          {
-            title: "Category",
-            dataIndex: "category",
-          },
         ]}
         dataSource={dataSource}
         pagination={{

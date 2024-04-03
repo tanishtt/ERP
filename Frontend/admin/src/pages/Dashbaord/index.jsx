@@ -12,6 +12,7 @@ import { getCustomers, getInventory, getOrders, getRevenue } from "../../API";
 import AreaGraph from "../Graphs/Area";
 import PieGraph from "../Graphs/Pie";
 import {Chart as ChartJS, ArcElement, Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler} from 'chart.js';
+import BarGraph from "../Graphs/Bar";
 ChartJS.register(
   Title, Tooltip, LineElement, Legend,
   CategoryScale, LinearScale, PointElement, Filler, ArcElement,
@@ -80,52 +81,52 @@ function Dashboard1() {
     <div>
   <Space size={10} direction="vertical">
     <Typography.Title level={3} style={{ marginLeft: '20px', marginBottom:'10px' }}>
-      Dashboard
+      Sales Dashboard
     </Typography.Title>
     <Space size={[3, 3]} direction="horizontal verticle" horizontalSize={200} verticalSize={200}>
       <DashboardCard
         icon={
-          <ShoppingCartOutlined
+          <DollarCircleOutlined
             style={{
               color: "green",
               backgroundColor: "rgba(0,255,0,0.25)",
               borderRadius: 5, // Reduced borderRadius
-              fontSize: 12, // Reduced fontSize
+              fontSize: 30, // Reduced fontSize
               padding: 2, // Reduced padding
             }}
           />
         }
-        title={"Orders"}
+        title={"Daily Sales"}
         value={orders}
       />
       <DashboardCard
         icon={
-          <ShoppingOutlined
+          <DollarCircleOutlined
             style={{
               color: "blue",
               backgroundColor: "rgba(0,0,255,0.25)",
               borderRadius: 5, // Reduced borderRadius
-              fontSize: 12, // Reduced fontSize
+              fontSize: 30, // Reduced fontSize
               padding: 2, // Reduced padding
             }}
           />
         }
-        title={"Inventory"}
+        title={"Weekly Sales"}
         value={inventory}
       />
       <DashboardCard
         icon={
-          <UserOutlined
+          <DollarCircleOutlined
             style={{
               color: "purple",
               backgroundColor: "rgba(0,255,255,0.25)",
               borderRadius: 5, // Reduced borderRadius
-              fontSize: 12, // Reduced fontSize
+              fontSize: 30, // Reduced fontSize
               padding: 2, // Reduced padding
             }}
           />
         }
-        title={"Customer"}
+        title={"Monthly Sales"}
         value={customers}
       />
       <DashboardCard
@@ -135,12 +136,12 @@ function Dashboard1() {
               color: "red",
               backgroundColor: "rgba(255,0,0,0.25)",
               borderRadius: 5, // Reduced borderRadius
-              fontSize: 12, // Reduced fontSize
+              fontSize: 30, // Reduced fontSize
               padding: 2, // Reduced padding
             }}
           />
         }
-        title={"Revenue"}
+        title={"Annual Sales"}
         value={revenue}
       />
     </Space>
@@ -151,37 +152,37 @@ function Dashboard1() {
 <div>
   <Space size={10} direction="vertical">
     <Typography.Title level={3} style={{ marginLeft: '20px', marginBottom:'10px' }}>
-      Dashboard
+      Customer Dashboard
     </Typography.Title>
     <Space size={[3, 3]} direction="horizontal verticle" horizontalSize={200} verticalSize={200}>
       <DashboardCard
         icon={
-          <ShoppingCartOutlined
+          <UserOutlined
             style={{
               color: "green",
               backgroundColor: "rgba(0,255,0,0.25)",
               borderRadius: 5, // Reduced borderRadius
-              fontSize: 12, // Reduced fontSize
-              padding: 2, // Reduced padding
+              fontSize: 20, // Reduced fontSize
+              padding: 0, // Reduced padding
             }}
           />
         }
-        title={"Orders"}
+        title={"Daily Customers"}
         value={orders}
       />
       <DashboardCard
         icon={
-          <ShoppingOutlined
+          <UserOutlined
             style={{
               color: "blue",
               backgroundColor: "rgba(0,0,255,0.25)",
               borderRadius: 5, // Reduced borderRadius
-              fontSize: 12, // Reduced fontSize
-              padding: 2, // Reduced padding
+              fontSize: 20, // Reduced fontSize
+              padding: 0, // Reduced padding
             }}
           />
         }
-        title={"Inventory"}
+        title={"Weekly Customers"}
         value={inventory}
       />
       <DashboardCard
@@ -191,27 +192,27 @@ function Dashboard1() {
               color: "purple",
               backgroundColor: "rgba(0,255,255,0.25)",
               borderRadius: 5, // Reduced borderRadius
-              fontSize: 12, // Reduced fontSize
-              padding: 2, // Reduced padding
+              fontSize: 20, // Reduced fontSize
+              padding: 0, // Reduced padding
             }}
           />
         }
-        title={"Customer"}
+        title={"Monthly Customers"}
         value={customers}
       />
       <DashboardCard
         icon={
-          <DollarCircleOutlined
+          <UserOutlined
             style={{
               color: "red",
               backgroundColor: "rgba(255,0,0,0.25)",
               borderRadius: 5, // Reduced borderRadius
-              fontSize: 12, // Reduced fontSize
-              padding: 2, // Reduced padding
+              fontSize: 20, // Reduced fontSize
+              padding: 0, // Reduced padding
             }}
           />
         }
-        title={"Revenue"}
+        title={"Annual Customers"}
         value={revenue}
       />
     </Space>
@@ -220,14 +221,14 @@ function Dashboard1() {
        
         {
         <div style={{ display: 'flex', marginBottom:"20px", height:"40vh"}}>
-        <div style={{ flex: 1 }}>
+        <div style={{ height:"100px", weidth:"100px" }}>
           <AreaGraph />
         </div>
-        <div style={{ flex: 1 }}>
+        <div style={{ height:"100px", weidth:"100px" }}>
           <PieGraph />
           </div>
-      <div style={{ flex: 1 }}>
-          <PieGraph />
+      <div style={{ height:"150px", weidth:"100px" }}>
+          <BarGraph />
           </div>
       </div>
         }
