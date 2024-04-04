@@ -9,7 +9,8 @@ function Orders1() {
   useEffect(() => {
     setLoading(true);
     getOrders().then((res) => {
-      setDataSource(res.products);
+      setDataSource(res);
+      console.log(res);
       setLoading(false);
     });
   }, []);
@@ -37,8 +38,16 @@ function Orders1() {
           },
           {
             title: "Total Items",
-            dataIndex: "product_details.length",
-          },
+            dataIndex: "product_details",
+            render: (productDetails) => {
+                // Parse the JSON string into an array of objects
+                const products = JSON.parse(productDetails);
+                
+                // Calculate the total quantity
+                const totalQuantity = products.reduce((total, product) => total + product.quantity, 0);
+
+                return totalQuantity;
+            }          },
           {
             title: "Total Bill Amount",
             dataIndex: "price",

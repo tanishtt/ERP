@@ -13,11 +13,10 @@ ChartJS.register(
 
 function PieGraph() {
     const [data, setData] = useState({
-        labels: ['One', 'Two', 'Three'],
+        labels: ['One', 'Two', 'Three','Four'],//,'Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'],
         datasets: [
             {
-                data: [3, 6, 9],
-                backgroundColor: ['aqua', 'bloodorange', 'purple']
+                backgroundColor: ['aqua', 'bloodorange', 'purple','bloodorange']
             }
         ],
     }
@@ -29,21 +28,23 @@ function PieGraph() {
   
     useEffect(() => {
       const arr =[];
-      fetch('http://localhost:3031/order_amounts_by_year')
+      fetch('http://localhost:3000/admin/dashboard/api/graph/sales')
         .then(response => response.json())
         .then(json => {console.log("json", json)
-        json.map((item, index) => {
+        const piedata=json.order_amounts_by_year;
+        console.log("piedata", piedata)
+        piedata.map((item, index) => {
             arr.push(item.y)
             arr.reverse();
   
         })
   
         setData(  {
-          labels: ['One', 'Two', 'Three'],
+        labels: ['One', 'Two', 'Three','Four'],//,'Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'],
         datasets: [
             {
                 data:arr,
-                backgroundColor: ['aqua', 'bloodorange', 'purple']
+                backgroundColor: ['aqua', 'bloodorange', 'purple','pink']
             }
         ],
         }
