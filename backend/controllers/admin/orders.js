@@ -147,19 +147,44 @@ function getDailyOrders(callback) {
     });
 }
 
+// function getAllOrders(req, res) {
+//     const query = `
+//         SELECT 
+//             o.order_id,
+//             c.customer_name,
+//             p.amount,
+//             p.payment_date AS order_date
+//         FROM 
+//             Orders o
+//         INNER JOIN 
+//             Customers c ON o.customer_id = c.customer_id
+//         INNER JOIN 
+//             Payments p ON o.order_id = p.order_id
+//     `;
+
+//     connection.query(query, (err, results) => {
+//         if (err) {
+//             console.error('Error fetching orders:', err);
+//             return res.status(500).json({ error: 'Internal server error' });
+//         }
+
+//         // Send the orders data in JSON response
+//         res.status(200).json(results);
+//     });
+// }
+
+
 function getAllOrders(req, res) {
     const query = `
         SELECT 
             o.order_id,
             c.customer_name,
-            p.amount,
-            p.payment_date AS order_date
+            o.price,
+            o.payment_date AS order_date
         FROM 
             Orders o
         INNER JOIN 
             Customers c ON o.customer_id = c.customer_id
-        INNER JOIN 
-            Payments p ON o.order_id = p.order_id
     `;
 
     connection.query(query, (err, results) => {
@@ -172,7 +197,6 @@ function getAllOrders(req, res) {
         res.status(200).json(results);
     });
 }
-
 module.exports = {
     getOrderCounts,
     getAllOrders

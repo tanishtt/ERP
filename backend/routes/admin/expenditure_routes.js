@@ -7,4 +7,5 @@ router.post('/post-expenditure', postExpenditure);
 router.post('/update-expenditure/:expenditure_id', updateExpenditure);
 router.delete('/delete-expenditure/:expenditure_id', deleteExpenditure);
 
+
 module.exports= router;

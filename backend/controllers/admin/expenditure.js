@@ -29,7 +29,12 @@ async function postExpenditure(req, res){
     connection.query(sql, values, (err, results) => {
         if (err) throw err;
         console.log('Form data inserted:', results);
-        res.send('Form data submitted successfully!');
+        const sql2='SELECT * FROM expenditures WHERE expenditure_id=?';
+        connection.query(sql2, [results.insertId], (err, results2) => {
+            if (err) throw err;
+            return res.json(results2);
+        });
+                    // res.send('Form data submitted successfully!');
     });
 }
 
