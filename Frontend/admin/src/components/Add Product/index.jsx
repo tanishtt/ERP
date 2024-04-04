@@ -84,7 +84,7 @@ function App1() {
         <div style={{ color: 'black', marginBottom: '10px', marginLeft: "20px" }}>
           <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>About Product</h1>
         </div>
-        <form onSubmit={onSubmitHandler}>
+        <form1 onSubmit={onSubmitHandler}>
           <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex' }}>
@@ -125,7 +125,7 @@ function App1() {
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: "15px" }}>
           <button className="btn" type="submit" style={{ border: '1px solid black', padding: '10px', borderRadius: '10px' }}>Submit</button>
         </div>
-      </form>
+      </form1>
     </div>
   </div>
 );
