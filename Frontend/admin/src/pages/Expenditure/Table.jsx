@@ -50,7 +50,7 @@ function Table() {
             const newData = await response.json();
             console.log(newData);
             console.log(data)
-            setData([...data, newData]);
+            setData([...data, ...newData]);
             setFormData({
                 category: '',
                 name: '',
@@ -71,7 +71,7 @@ function Table() {
     };
 
     const handleEdit = (id) => {
-        const productToEdit = data.find(product => product.id === id);
+        const productToEdit = data.find(product => product.expenditure_id === id);
         if (productToEdit) {
             setFormData(productToEdit);
             setEditId(id);
@@ -89,14 +89,21 @@ function Table() {
                 },
                 body: JSON.stringify(formData),
             });
+            console.log(response.ok);
             if (!response.ok) {
                 throw new Error('Failed to update product');
             }
-            await response.json();
+            const responseData=await response.json();
+            console.log(responseData);
+
             const updatedData = data.map(product => {
-                if (product.id === editId) {
-                    return formData;
+                if (product.expenditure_id === editId) {
+                    console.log(formData);
+
+                    return { expenditure_id:product.expenditure_id, ...formData};
                 }
+                console.log(typeof product.expenditure_id);
+                console.log(typeof editId);
                 return product;
             });
             setData(updatedData);
@@ -123,7 +130,7 @@ function Table() {
             if (!response.ok) {
                 throw new Error('Failed to delete product');
             }
-            const updatedData = data.filter(product => product.id !== id);
+            const updatedData = data.filter(product => product.expenditure_id !== id);
             setData(updatedData);
         } catch (error) {
             console.error("Error deleting product: ", error);
@@ -164,8 +171,8 @@ function Table() {
                 </thead>
                 <tbody>
                     {data.map(product => (
-                        <tr key={product.id}>
-                            <td>{product.id}</td>
+                        <tr key={product.expenditure_id}>
+                            <td>{product.expenditure_id}</td>
                             <td>{product.category}</td>
                             <td>{product.name}</td>
                             <td>{product.date}</td>
@@ -174,8 +181,8 @@ function Table() {
                             <td>{product.status}</td>
                             <td>{product.email}</td>
                             <td>
-                                <button onClick={() => handleEdit(product.id)}>Edit</button>
-                                <button onClick={() => handleDelete(product.id)}>Delete</button>
+                                <button onClick={() => handleEdit(product.expenditure_id)}>Edit</button>
+                                <button onClick={() => handleDelete(product.expenditure_id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

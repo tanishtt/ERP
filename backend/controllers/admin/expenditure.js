@@ -67,7 +67,7 @@ async function updateExpenditure(req, res){
     connection.query(sql, values, (err, results) => {
         if (err) throw err;
         console.log('Expenditure updated:', results);
-        res.send('Expenditure updated successfully!');
+        res.json({msg:'Expenditure updated successfully!'});
     });
 }
 
@@ -81,7 +81,7 @@ async function deleteExpenditure(req, res){
     connection.query(sql, [expenditureId], (err, results) => {
         if (err) throw err;
         console.log('Expenditure deleted:', results);
-        res.send('Expenditure deleted successfully!');
+        res.json({msg:'Expenditure deleted successfully!'});
     });
 }
 
