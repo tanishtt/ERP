@@ -1,0 +1,22 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "all": "npm-run-all --parallel admin cashier customer",
+    "admin": "cd admin && npm start",
+    "cashier": "cd Cashier && npm start",
+    "customer": "cd customer && npm start",
+    "i-all": "npm-run-all --parallel i-admin i-cashier i-customer",
+    "i-admin": "cd admin && npm i",
+    "i-cashier": "cd Cashier && npm i",
+    "i-customer": "cd customer && npm i",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
