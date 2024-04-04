@@ -10,7 +10,7 @@ async function handleAddProduct(req, res) {
         const query = 'INSERT INTO products (product_name, description, price, category_id, stock_quantity, last_updated) VALUES (?, ?, ?, ?, ?, ?)';
         const values = [product_name, description, price, category_id, stock_quantity, last_updated];
         await connection.query(query, values);
-
+        console.log('added successfully product to database');
 
         
         res.status(200).json({ message: 'Product added successfully.' });

@@ -3,13 +3,7 @@ import Uploader from './Uploader';
 import './index.css';
 
 function App1() {
-  const [formData, setFormData] = useState({
-    email: 'default@gmail.com',
-    occupation: 'student',
-    gender: 'male',
-    languages: ['html'],
-    category: '1', // Default category value
-  });
+  const [formData, setFormData] = useState([]);
 
   const [categories, setCategories] = useState([]);
 
@@ -19,7 +13,7 @@ function App1() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:3033/category');
+      const response = await fetch('http://localhost:3000/admin/add-product/api/category-drop-down');
       if (!response.ok) {
         throw new Error('Failed to fetch categories');
       }
@@ -51,7 +45,7 @@ function App1() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3033/submitFormData', {
+      const response = await fetch('http://localhost:3000/admin/add-product/submit-product', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -62,17 +56,12 @@ function App1() {
       if (!response.ok) {
         throw new Error('Failed to submit form data');
       }
+      await response.json();
 
       console.log('Form data submitted successfully:', formData);
 
       // Reset form data after successful submission
-      setFormData({
-        email: 'default@gmail.com',
-        occupation: 'student',
-        gender: 'male',
-        languages: ['html'],
-        category: '1',
-      });
+    
     } catch (error) {
       console.error('Error submitting form data:', error);
     }
@@ -84,23 +73,23 @@ function App1() {
         <div style={{ color: 'black', marginBottom: '10px', marginLeft: "20px" }}>
           <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>About Product</h1>
         </div>
-        <form1 onSubmit={onSubmitHandler}>
+        <form onSubmit={onSubmitHandler} style={{marginTop:"230px", marginLeft:"350px"}}>
           <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex' }}>
                 <div className="form-group" style={{ marginRight: '10px' }}>
                   <label htmlFor="product-name" className="form-label" style={{ color: 'black', paddingRight: '2px', marginRight: '4px' }}>Product Name</label>
-                  <input id="product-name" className="form-control" name="productName" onChange={onChangeHandler} style={{ backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', padding: '6px', width: '370px' }} />
+                  <input id="product-name" className="form-control" name="product_name" onChange={onChangeHandler} style={{ backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', padding: '6px', width: '370px' }} />
                 </div>
                 <div className="form-group" >
                   <label htmlFor="product-price" className="form-label" style={{ color: 'black', marginLeft: '40px', marginRight: '4px' }}>Product Price</label>
-                  <input id="product-price" className="form-control" name="productPrice" onChange={onChangeHandler} style={{ backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', padding: '6px', width: '370px' }} />
+                  <input id="product-price" className="form-control" name="price" onChange={onChangeHandler} style={{ backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', padding: '6px', width: '370px' }} />
                 </div>
               </div>
               <div style={{ display: 'flex', marginTop: '10px' }}>
                 <div className="form-group" style={{ marginRight: '10px' }}>
                   <label htmlFor="category" className="form-label" style={{ color: 'black', paddingRight: '2px', marginRight: '4px' }}>Category</label>
-                  <select id="category" className="form-select" name="category" onChange={onChangeHandler} style={{ backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', padding: '6px', width: '410px' }}>
+                  <select id="category" className="form-select" name="category_id" onChange={onChangeHandler} style={{ backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', padding: '6px', width: '410px' }}>
                     {categories.map(category => (
                       <option key={category.category_id} value={category.category_id}>{category.category_name}</option>
                     ))}
@@ -108,7 +97,7 @@ function App1() {
                 </div>
                 <div className="form-group">
                   <label htmlFor="quantity" className="form-label" style={{ color: 'black', marginLeft: '40px', paddingRight: '4px', marginRight: '4px' }}>Quantity</label>
-                  <input id="quantity" className="form-control" name="quantity" onChange={onChangeHandler} style={{ backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', padding: '6px', width: '400px' }} />
+                  <input id="quantity" className="form-control" name="stock_quantity" onChange={onChangeHandler} style={{ backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', padding: '6px', width: '400px' }} />
                 </div>
               </div>
               <div className="form-group" style={{ marginTop: '10px', display: 'flex', alignItems: 'center', width: '1000px' }}>
@@ -125,7 +114,7 @@ function App1() {
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: "15px" }}>
           <button className="btn" type="submit" style={{ border: '1px solid black', padding: '10px', borderRadius: '10px' }}>Submit</button>
         </div>
-      </form1>
+      </form>
     </div>
   </div>
 );
