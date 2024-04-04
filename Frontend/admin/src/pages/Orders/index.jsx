@@ -29,15 +29,15 @@ function Orders1() {
           },
           {
             title: "Customer Id",
-            dataIndex: "customer_id",
+            dataIndex: "customer_name",
           },
           {
             title: "Products Ordered",
-            dataIndex: "products_details",
+            dataIndex: "product_details",
           },
           {
             title: "Total Items",
-            dataIndex: "products_details.length",
+            dataIndex: "product_details.length",
           },
           {
             title: "Total Bill Amount",
