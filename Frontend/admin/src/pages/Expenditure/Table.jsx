@@ -20,7 +20,7 @@ function Table() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:3031/users');
+            const response = await fetch('http://localhost:3000/admin/expenditure/get-expenditure');
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -34,7 +34,7 @@ function Table() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://localhost:3031/users', {
+            const response = await fetch('http://localhost:3000/admin/expenditure/post-expenditure', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,7 +44,12 @@ function Table() {
             if (!response.ok) {
                 throw new Error('Failed to add product');
             }
+            else{
+                console.log('abc');
+            }
             const newData = await response.json();
+            console.log(newData);
+            console.log(data)
             setData([...data, newData]);
             setFormData({
                 category: '',
@@ -77,8 +82,8 @@ function Table() {
 
     const handleUpdate = async () => {
         try {
-            const response = await fetch(`http://localhost:3031/users/${editId}`, {
-                method: 'PUT',
+            const response = await fetch(`http://localhost:3000/admin/expenditure/update-expenditure/${editId}`, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -112,7 +117,7 @@ function Table() {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:3031/users/${id}`, {
+            const response = await fetch(`http://localhost:3000/admin/expenditure/delete-expenditure/${id}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {
