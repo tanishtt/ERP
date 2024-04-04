@@ -3,7 +3,7 @@ const router=express.Router();
 const {getOrderCounts,getAllOrders}= require('../../controllers/admin/orders')
 const {exportToExcelOrders}= require('../../controllers/admin/exporttoexcel')
 
-router.get('/',getAllOrders);
+router.get('/get-orders',getAllOrders);
 
 router.get('/api/orders',getOrderCounts)
 

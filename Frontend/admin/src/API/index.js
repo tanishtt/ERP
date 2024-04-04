@@ -1,5 +1,5 @@
 export const getOrders = () => {
-  return fetch("https://dummyjson.com/carts/1").then((res) => res.json());
+  return fetch("http://localhost:3000/admin/orders/get-orders").then((res) => res.json());
 };
 
 export const getRevenue = () => {

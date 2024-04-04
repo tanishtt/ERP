@@ -179,8 +179,10 @@ function getAllOrders(req, res) {
         SELECT 
             o.order_id,
             c.customer_name,
+            o.product_details,
             o.price,
-            o.payment_date AS order_date
+            o.discount_price,
+            o.date
         FROM 
             Orders o
         INNER JOIN 
