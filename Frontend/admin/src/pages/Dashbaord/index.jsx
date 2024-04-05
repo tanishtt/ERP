@@ -65,11 +65,13 @@ function Dashboard1() {
 
   useEffect(() => {
     getSales().then((res) => {
-      setSales(res.total);
+      console.log(res); 
+      setSales(res);
     });
 
     getCustomer().then((res) => {
-      setCustomer(res.total);
+      console.log(res);
+      setCustomer(res);
     });
     
     getOrders().then((res) => {
@@ -110,7 +112,7 @@ function Dashboard1() {
           />
         }
         title={"Daily Sales"}
-        value={sales.daily_sales}
+        value={sales.dailySales}
       />
       <DashboardCard
         icon={
@@ -125,7 +127,7 @@ function Dashboard1() {
           />
         }
         title={"Weekly Sales"}
-        value={sales.weekly_sales}
+        value={sales.weeklySales}
       />
       <DashboardCard
         icon={
@@ -140,7 +142,7 @@ function Dashboard1() {
           />
         }
         title={"Monthly Sales"}
-        value={sales.monthly_sales}
+        value={sales.monthlySales}
       />
       <DashboardCard
         icon={
@@ -155,7 +157,7 @@ function Dashboard1() {
           />
         }
         title={"Annual Sales"}
-        value={sales.total_sales}
+        value={sales.totalSales}
       />
     </Space>
   </Space>
@@ -181,7 +183,7 @@ function Dashboard1() {
           />
         }
         title={"Daily Customers"}
-        value={customer.daily_customers}
+        value={customer.dailyCustomers}
       />
       <DashboardCard
         icon={
@@ -196,7 +198,7 @@ function Dashboard1() {
           />
         }
         title={"Weekly Customers"}
-        value={customer.weekly_customers}
+        value={customer.weeklyCustomers}
       />
       <DashboardCard
         icon={
@@ -211,7 +213,7 @@ function Dashboard1() {
           />
         }
         title={"Monthly Customers"}
-        value={customer.monthly_customers}
+        value={customer.monthlyCustomers}
       />
       <DashboardCard
         icon={
@@ -226,7 +228,7 @@ function Dashboard1() {
           />
         }
         title={"Annual Customers"}
-        value={customer.total_customers}
+        value={customer.totalCustomers}
       />
     </Space>
 
