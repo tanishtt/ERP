@@ -67,9 +67,11 @@ function Dashboard1() {
     getSales().then((res) => {
       setSales(res.total);
     });
+
     getCustomer().then((res) => {
       setCustomer(res.total);
     });
+    
     getOrders().then((res) => {
       setOrders(res.total);
       setRevenue(res.discountedTotal);
