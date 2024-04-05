@@ -3,11 +3,11 @@ export const getOrders = () => {
 };
 
 export const getSales = () => {
-  return fetch("http://localhost:3000/admin/orders/get-orders").then((res) => res.json());
+  return fetch("http://localhost:3000/admin/dashboard/api/sales").then((res) => res.json());
 };
 
 export const getCustomer = () => {
-  return fetch("http://localhost:3000/admin/orders/get-orders").then((res) => res.json());
+  return fetch("http://localhost:3000/admin/dashboard/api/customers").then((res) => res.json());
 };
 
 export const getRevenue = () => {
