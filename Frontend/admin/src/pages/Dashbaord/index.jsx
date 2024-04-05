@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Card, Space, Statistic, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { getCustomers, getInventory, getOrders, getRevenue } from "../../API";
+import { getCustomers, getInventory, getOrders, getRevenue, getSales, getCustomer } from "../../API";
 
 
 import AreaGraph from "../Graphs/Area";
@@ -56,12 +56,20 @@ ChartJS.register(
 // );
 
 function Dashboard1() {
+  const [sales, setSales] = useState(0);
+  const [customer, setCustomer] = useState(0);
   const [orders, setOrders] = useState(0);
   const [inventory, setInventory] = useState(0);
   const [customers, setCustomers] = useState(0);
   const [revenue, setRevenue] = useState(0);
 
   useEffect(() => {
+    getSales().then((res) => {
+      setSales(res.total);
+    });
+    getCustomer().then((res) => {
+      setCustomer(res.total);
+    });
     getOrders().then((res) => {
       setOrders(res.total);
       setRevenue(res.discountedTotal);
@@ -97,7 +105,7 @@ function Dashboard1() {
           />
         }
         title={"Daily Sales"}
-        value={orders}
+        value={sales.daily_sales}
       />
       <DashboardCard
         icon={
@@ -112,7 +120,7 @@ function Dashboard1() {
           />
         }
         title={"Weekly Sales"}
-        value={inventory}
+        value={sales.weekly_sales}
       />
       <DashboardCard
         icon={
@@ -127,7 +135,7 @@ function Dashboard1() {
           />
         }
         title={"Monthly Sales"}
-        value={customers}
+        value={sales.monthly_sales}
       />
       <DashboardCard
         icon={
@@ -142,7 +150,7 @@ function Dashboard1() {
           />
         }
         title={"Annual Sales"}
-        value={revenue}
+        value={sales.total_sales}
       />
     </Space>
   </Space>
@@ -168,7 +176,7 @@ function Dashboard1() {
           />
         }
         title={"Daily Customers"}
-        value={orders}
+        value={customer.daily_customers}
       />
       <DashboardCard
         icon={
@@ -183,7 +191,7 @@ function Dashboard1() {
           />
         }
         title={"Weekly Customers"}
-        value={inventory}
+        value={customer.weekly_customers}
       />
       <DashboardCard
         icon={
@@ -198,7 +206,7 @@ function Dashboard1() {
           />
         }
         title={"Monthly Customers"}
-        value={customers}
+        value={customer.monthly_customers}
       />
       <DashboardCard
         icon={
@@ -213,7 +221,7 @@ function Dashboard1() {
           />
         }
         title={"Annual Customers"}
-        value={revenue}
+        value={customer.total_customers}
       />
     </Space>
 

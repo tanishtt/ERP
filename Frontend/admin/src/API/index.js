@@ -2,6 +2,14 @@ export const getOrders = () => {
   return fetch("http://localhost:3000/admin/orders/get-orders").then((res) => res.json());
 };
 
+export const getSales = () => {
+  return fetch("http://localhost:3000/admin/orders/get-orders").then((res) => res.json());
+};
+
+export const getCustomer = () => {
+  return fetch("http://localhost:3000/admin/orders/get-orders").then((res) => res.json());
+};
+
 export const getRevenue = () => {
   return fetch("https://json.com/carts").then((res) => res.json());
 };
