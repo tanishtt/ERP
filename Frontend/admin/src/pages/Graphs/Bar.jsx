@@ -37,17 +37,19 @@ function BarGraph() {
 
   useEffect(() => {
     const arr =[];
-    fetch('http://localhost:3031/order_amounts_by_year')
+    fetch('http://localhost:3000/admin/dashboard/api/graph/sales')
       .then(response => response.json())
       .then(json => {console.log("json", json)
-      json.map((item, index) => {
+      const piedata=json.order_amounts_by_year;
+        console.log("piedata", piedata)
+      piedata.map((item, index) => {
           arr.push(item.y)
           arr.reverse();
 
       })
 
       setData(  {
-        labels:["2020", "2021", "2022"],
+        labels:["2020", "2021", "2022","2023"],
         datasets:[
           {
             label:"First Dataset",
