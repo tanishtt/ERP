@@ -49,10 +49,32 @@ async function getProductById(req, res) {
     });
 }
 
+
+async function getAllCustomers (req, res) {
+    try {
+        const CustomerDetails = `SELECT * FROM customers`;
+        connection.query(CustomerDetails, (err, result) => {
+            if (err) {
+                console.error('error in getting result', err);
+                return res.status(500).json({ error: 'Internal server error' });
+            }
+            return res.json(result);
+        })
+    }
+    catch (error) {
+        console.error('Error in getAllCustomers function:', error);
+        return res.status(500).json({ error: 'Internal server error' })
+    }
+}            
+
+
+
+
 module.exports={
     handleCashierPage,
     handleAddNewItem,
     handleConfirmOrder,
     getProducts,
-    getProductById
+    getProductById,
+    getAllCustomers
 }

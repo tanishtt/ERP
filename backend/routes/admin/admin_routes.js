@@ -12,6 +12,11 @@ const customers= require('./customer_routes');
 const products= require('./products_routes');
 const expenditure= require('./expenditure_routes');
 const addProductsRoute= require('./add_product_routes');
+const employees= require('./employees_routes');
+const attendance= require('./attendance_routes');
+
+
+
 
 router.use('/dashboard',dashboard);
 router.use('/products',products);
@@ -20,5 +25,8 @@ router.use('/orders',orders);
 router.use('/add-product',addProductsRoute);
 router.use('/salesGraph',getOrderAmountsByYear);
 router.use('/expenditure', expenditure);
+router.use('/employees',employees);
+router.use('/attendance',attendance);
+
 
 module.exports= router;
