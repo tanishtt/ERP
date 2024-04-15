@@ -121,6 +121,7 @@ const Cart = () => {
 
     return (
       <div className="container">
+        
       <div className="boxes">
           <div className="container2" style={{ width: "900px" }}>
             <div className="row d-flex justify-content-center my-4">
@@ -260,10 +261,9 @@ const Cart = () => {
                 Go to checkout
               </button>
             </div>
-
-
           </div>
         </div>
+
       </div>
     );
   };
