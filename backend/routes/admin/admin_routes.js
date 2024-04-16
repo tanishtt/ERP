@@ -14,7 +14,7 @@ const expenditure= require('./expenditure_routes');
 const addProductsRoute= require('./add_product_routes');
 const employees= require('./employees_routes');
 const attendance= require('./attendance_routes');
-
+const bill= require('./bill_routes');
 
 
 
@@ -27,6 +27,6 @@ router.use('/salesGraph',getOrderAmountsByYear);
 router.use('/expenditure', expenditure);
 router.use('/employees',employees);
 router.use('/attendance',attendance);
-
+router.use('/bill',bill);
 
 module.exports= router;
