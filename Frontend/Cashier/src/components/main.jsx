@@ -371,32 +371,10 @@ const Cart = () => {
                 </select>
               </div>
             </div>
-
-
-            {/* <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-              <div>
-                <label htmlFor="totalAmount" style={{ marginLeft: '10px' }}>Amount:</label>
-              </div>
-              <div style={{ width: '250px', height: '100px' }}>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="totalAmount"
-                  placeholder="Amount"
-                  value={₹${subtotal.toFixed(2)}}
-                  style={{ fontSize: '56px', textAlign: 'center', fontWeight: 'bold' }}
-                  readOnly
-                />
-              </div>
-            </div> */}
-
           </div>
         </div>
 
-
-
-
-
+        
       </div>
       <div style={{ padding: '20px', boxSizing: 'border-box' }}>
         <div className="showcart" style={{ width: '100px', marginLeft: '40px' }}>

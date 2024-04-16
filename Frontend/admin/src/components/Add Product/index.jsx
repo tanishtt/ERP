@@ -78,6 +78,8 @@ function App1() {
         </div>
         <form onSubmit={onSubmitHandler} style={{ marginTop: "230px", marginLeft: "350px" }}>
           <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px' }}>
+
+            
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex' }}>
                 <div className="form-group" style={{ marginRight: '10px' }}>
@@ -109,6 +111,9 @@ function App1() {
                 <textarea id="description" className="form-control" name="description" value={formData.description} onChange={onChangeHandler} style={{ flex: 1, backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', height: '100px', overflowY: 'auto' }} />
               </div>
             </div>
+
+
+
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
               <div>
                 <Uploader />

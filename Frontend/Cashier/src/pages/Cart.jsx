@@ -200,41 +200,41 @@ const Cart = () => {
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-  <span>Discount Type:</span>
-  <div style={{ display: 'flex', alignItems: 'center' }}>
-    <select
-      value={discountType}
-      onChange={(e) => setDiscountType(e.target.value)}
-      style={{ marginRight: '5px', padding: '5px', borderRadius: '5px' }}
-    >
-      <option value="percentage">Percentage</option>
-      <option value="amount">Amount</option>
-    </select>
-    <input
-      type="number"
-      style={{ backgroundColor: '#dedddd', width: '70px', textAlign: 'center', padding: '5px', margin: '0',borderRadius: '5px' }}
-      value={discountValue}
-      onChange={(e) => setDiscountValue(parseFloat(e.target.value))}
-    />
-  </div>
-</li>
+                  <span>Discount Type:</span>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <select
+                      value={discountType}
+                      onChange={(e) => setDiscountType(e.target.value)}
+                      style={{ marginRight: '5px', padding: '5px', borderRadius: '5px' }}
+                    >
+                      <option value="percentage">Percentage</option>
+                      <option value="amount">Amount</option>
+                    </select>
+                    <input
+                      type="number"
+                      style={{ backgroundColor: '#dedddd', width: '70px', textAlign: 'center', padding: '5px', margin: '0', borderRadius: '5px' }}
+                      value={discountValue}
+                      onChange={(e) => setDiscountValue(parseFloat(e.target.value))}
+                    />
+                  </div>
+                </li>
 
 
                 <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                   Discount Price:
                   <input
                     type="number"
-                    style={{ backgroundColor: '#dedddd', width: '70px', textAlign: 'center', width: '100px' , borderRadius: '5px'}}
+                    style={{ backgroundColor: '#dedddd', width: '70px', textAlign: 'center', width: '100px', borderRadius: '5px' }}
                     value={calculateDiscountAmount()}
                     onChange={handleDiscountChange}
                   />
                 </li>
 
-               
+
 
                 <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                  <strong style={{ fontSize: "30px", marginLeft: '50px' ,borderRadius: '5px'}}>Total amount: </strong>
-                  <div style={{ backgroundColor: '#e8e8e8', padding: '10px', border: '1px solid #cbcbcb' ,borderRadius: '5px'}}>
+                  <strong style={{ fontSize: "30px", marginLeft: '50px', borderRadius: '5px' }}>Total amount: </strong>
+                  <div style={{ backgroundColor: '#e8e8e8', padding: '10px', border: '1px solid #cbcbcb', borderRadius: '5px' }}>
                     <strong><span style={{ fontSize: '40px', color: 'red' }}>₹{calculateTotalAmount()}</span></strong>
                   </div>
 

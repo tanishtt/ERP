@@ -515,6 +515,10 @@ export const links = [
       {
         name: 'show_attendance',
         icon: <RiContactsLine />,
+      },
+      {
+        name: 'bill_entry',
+        icon: <RiContactsLine />,
       }
     ],
   },

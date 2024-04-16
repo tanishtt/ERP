@@ -1,0 +1,106 @@
+/* body{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 500px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+
+.box {
+  width: 800px;
+  height: 200px;
+  border: 1px solid #000;
+  margin: 10px;
+  display: flex;
+  justify-content: center; /* Optional: Centers the content horizontally */
+  align-items: center; /* Optional: Centers the content vertically */
+}
+
+
+table{
+  border: 1px solid rgb(235, 225, 225);
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+table tr {
+  background-color: rgb(203, 207, 207);
+  color: rgb(16, 2, 2);
+}
+
+table tr th, table tr td {
+  padding: 5px;
+}
+
+.form-div {
+  margin-bottom: 10px;
+}
+
+.form-div form input{
+  width: 43.5%;
+  padding: 5px;
+}
+
+.form-div form button{
+  width: 10%;
+  padding: 5px;
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+
+.delete-button {
+  color: red;
+}
+
+.table {
+  background-color: white;
+  border-radius: 10px; /* Adjust the radius value as needed */
+}
+
+
+
+
+/* body {
+    padding: 40px;
+  }
+  
+  .App {
+    text-align: center;
+    font-size: 22px;
+  }
+  
+  input.inputBox {
+    font-size: 22px;
+    padding: 5px 8px 4px 8px;
+    border-radius: 3px;
+    border: 1px solid #666;
+  }
+  
+  .calendarWrap {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .calendarElement {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40px;
+    border: 1px solid #ccc;
+    z-index: 999;
+  } */
