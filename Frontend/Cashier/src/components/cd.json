@@ -1,0 +1,28 @@
+{
+    "customer": [
+        {
+            "customer_id": 1,
+            "name": "John Doe",
+            "email": "john@example.com",
+            "number": "1234567890"
+        },
+        {
+            "customer_id": 2,
+            "name": "Jane Doe",
+            "email": "jane@example.com",
+            "number": "0987654321"
+        },
+        {
+            "customer_id": 3,
+            "name": "tanish",
+            "email": "tan1@tan1",
+            "number": "1230987345"
+        },
+        {
+            "customer_id": 4,
+            "name": "tanish2",
+            "email": "tan2@tan2",
+            "number": "6478378298"
+        }
+    ]
+}
