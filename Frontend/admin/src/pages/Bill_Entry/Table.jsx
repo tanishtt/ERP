@@ -2,34 +2,81 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Uploader from './Uploader';
 
 function Table() {
     const [rows, setRows] = useState([
         { id: 1, productName: '', category: '', qty: '', price: '', tax: '', totalAmount: '' }
-      ]);
-      const [nextId, setNextId] = useState(2);
-    
-      const handleInputChange = (id, event) => {
+    ]);
+    const [nextId, setNextId] = useState(2);
+    const [imageFile, setImageFile] = useState(null); // State to store the image file
+    const [formData, setFormData] = useState({
+        vendor_name: '',
+        bill_number: '',
+        vendor_address: '',
+        vendor_contact_number: '',
+        bill_date: '',
+        payment_type: '',
+        due_date: '',
+        gst_number: '',
+        products: []
+    });
+
+    const handleInputChange = (id, event) => {
         const { name, value } = event.target;
         const newRows = rows.map(row => (row.id === id ? { ...row, [name]: value } : row));
         setRows(newRows);
-      };
-    
-      const handleAddRow = () => {
+    };
+
+    const handleAddRow = () => {
         setRows([...rows, { id: nextId, productName: '', category: '', qty: '', price: '', tax: '', totalAmount: '' }]);
         setNextId(nextId + 1);
-      };
-    
-      const handleDeleteRow = (id) => {
+    };
+
+    const handleDeleteRow = (id) => {
         const newRows = rows.filter(row => row.id !== id);
         setRows(newRows);
-      };
+    };
+
+    // Function to handle image upload and post request
+    const handleImageUpload = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('bill-image', imageFile); // Assuming the key is 'image', adjust as per your backend
+            const response = await fetch('YOUR_BACKEND_URL', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                body: formData
+            });
+            const responseData = await response.json();
+            updateFormInputs(responseData); // Update form inputs with response data
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
+
+    // Function to update form inputs with response data
+    const updateFormInputs = (data) => {
+        setFormData(data);
+    };
+
+    // Effect to update form inputs when formData changes
+    useEffect(() => {
+        // Update form inputs based on formData state
+    }, [formData]);
 
     return (
-
         <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '20px', margin: '20px', backgroundColor: '#f0f0f0' }}>
             <div>
                 Vendor details:
+            </div>
+            <div>
+                <Uploader setImageFile={setImageFile} /> {/* Pass setImageFile function as prop */}
+            </div>
+            <div>
+                <button onClick={handleImageUpload}>Post Image</button> {/* Button for uploading and posting image */}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex' }}>
