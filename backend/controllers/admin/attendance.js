@@ -223,6 +223,19 @@ async function getEmployees(req, res){
     });
 }
 
+async function getAttendance(req, res){
+
+     connection.query('SELECT * FROM attendance', (err, results) => {
+        if (err) {
+            console.error('Error retrieving employees: ', err);
+            res.status(500).send('Internal server error');
+            return;
+        }
+
+        res.json(results);
+    });
+}
+
 
 
 module.exports={
@@ -232,6 +245,7 @@ module.exports={
     getAttendanceStatsByEmployeeId,
     getAttendanceStatsByEmployeeIdAndYear,
     getAttendanceStatsByEmployeeIdYearAndMonth,
-    getEmployees
+    getEmployees,
+    getAttendance
 
 }

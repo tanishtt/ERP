@@ -1,6 +1,8 @@
 const express = require('express'); 
 const router= express.Router();
-const {getEmployees} = require('../../controllers/admin/attendance');
+const {getEmployees,getAttendance} = require('../../controllers/admin/attendance');
 
-router.get('/employee-data',getEmployees);
+router.get('/get-employee-data',getEmployees);
+router.get('/get-attendance-data',getAttendance);
+
 module.exports=router;
