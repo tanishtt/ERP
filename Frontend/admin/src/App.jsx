@@ -23,6 +23,8 @@ import App2 from './pages/Expenditure/App';
 import App3 from './pages/Add_emp/App';
 import App4 from './pages/Attendence/App';
 import App5 from './pages/Show_Attendance/App';
+import App6 from './pages/Bill_Entry/App';
+
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
 
@@ -111,6 +113,7 @@ const App = () => {
                 <Route path="/add_emp" element={<App3/>} />
                 <Route path="/attendence" element={<App4/>} />
                 <Route path="/show_attendance" element={<App5/>} />
+                <Route path="/bill_entry" element={<App6/>} />
 
               </Routes>
             </div>

@@ -8,6 +8,7 @@ import Expenditure from "../../Pages/Expenditure";
 import Add_emp from "../Add_emp/App";
 import Attendence from "../Attendence/App";
 import Show_Attendance from "../Show_Attendance";
+import Bill_Entry from "../Bill_Entry";
 
 function AppRoutes() {
   return (
@@ -21,6 +22,7 @@ function AppRoutes() {
       <Route path="/add_emp" element={<Add_emp />}></Route>
       <Route path="/attendence" element={<Attendence />}></Route>
       <Route path="/show_attendance" element={<Show_Attendance />}></Route>
+      <Route path="/bill_entry" element={<Bill_Entry />}></Route>
     </Routes>
   );
 }
