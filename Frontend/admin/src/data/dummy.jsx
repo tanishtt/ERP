@@ -503,6 +503,18 @@ export const links = [
       {
         name: 'expentiture',
         icon: <RiContactsLine />,
+      },
+      {
+        name: 'add_emp',
+        icon: <RiContactsLine />,
+      },
+      {
+        name: 'attendence',
+        icon: <RiContactsLine />,
+      },
+      {
+        name: 'show_attendance',
+        icon: <RiContactsLine />,
       }
     ],
   },
