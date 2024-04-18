@@ -1,48 +1,36 @@
-import React, { useState } from 'react'
-import './index.css'
-import { MdCloudUpload, MdDelete } from 'react-icons/md'
-import { AiFillFileImage } from 'react-icons/ai'
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function Uploader() {
+function App() {
+  const [file, setFile] = useState(null);
 
-  const [image, setImage] = useState(null)
-  const [fileName, setFileName] = useState("No selected file")
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append('photo', file);
+
+    try {
+      await axios.post('http://localhost:5000/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      alert('Photo uploaded successfully');
+    } catch (error) {
+      console.error('Error uploading photo: ', error);
+    }
+  };
+
   return (
-    <main>
-      <form encType="multipart/form-data"
-      onClick={() => document.querySelector(".input-field").click()}>
-        <input type="file" accept='image/*' name='bill-image'  className='input-field' hidden 
-        onChange={({ target: {files}}) => {
-          files[0] && setFileName(files[0].name)
-          if(files){
-            setImage(URL.createObjectURL(files[0]))
-          }
-        }}/>
-
-        {image ?
-        <img src={image} width={50} height={50} alt={fileName} />
-        :
-        <>
-        <MdCloudUpload color='black' size={50} />
-        <p style={{ color: 'black' }}>Upload Bill</p>
-        </>
-      }
-      </form>
-
-      <section className='uploaded-row'>
-        <AiFillFileImage color='black' />
-        <span className='upload-content' style={{ color: 'black' }}>
-          {fileName} - 
-          <MdDelete 
-          onClick={() => {
-            setFileName("No selected File")
-            setImage(null)
-          }}
-          />
-        </span>
-      </section>
-    </main>
-  )
+    <div className="App">
+      <h1>Photo Upload App</h1>
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleSubmit}>Upload Photo</button>
+    </div>
+  );
 }
 
-export default Uploader
+export default App;
