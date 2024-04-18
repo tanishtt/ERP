@@ -39,23 +39,23 @@ function Table() {
     };
 
     // Function to handle image upload and post request
-    const handleImageUpload = async () => {
-        try {
-            const formData = new FormData();
-            formData.append('bill-image', imageFile); // Assuming the key is 'image', adjust as per your backend
-            const response = await fetch('YOUR_BACKEND_URL', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-                body: formData
-            });
-            const responseData = await response.json();
-            updateFormInputs(responseData); // Update form inputs with response data
-        } catch (error) {
-            console.error('Error uploading image:', error);
-        }
-    };
+    // const handleImageUpload = async () => {
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append('bill-image', imageFile); // Assuming the key is 'image', adjust as per your backend
+    //         const response = await fetch('YOUR_BACKEND_URL', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //             },
+    //             body: formData
+    //         });
+    //         const responseData = await response.json();
+       //      updateFormInputs(responseData); // Update form inputs with response data
+    //     } catch (error) {
+    //         console.error('Error uploading image:', error);
+    //     }
+    // };
 
     // Function to update form inputs with response data
     const updateFormInputs = (data) => {
@@ -73,10 +73,10 @@ function Table() {
                 Vendor details:
             </div>
             <div>
-                <Uploader setImageFile={setImageFile} /> {/* Pass setImageFile function as prop */}
+             <Uploader />
             </div>
             <div>
-                <button onClick={handleImageUpload}>Post Image</button> {/* Button for uploading and posting image */}
+                
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex' }}>
