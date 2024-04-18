@@ -8,21 +8,23 @@ function App() {
     setFile(e.target.files[0]);
   };
 
-  const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append('photo', file);
+const handleSubmit = async () => {
+  const formData = new FormData();
+  formData.append('bill-image', file);
 
-    try {
-      await axios.post('http://localhost:5000/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      alert('Photo uploaded successfully');
-    } catch (error) {
-      console.error('Error uploading photo: ', error);
-    }
-  };
+  try {
+    const response = await axios.post('http://localhost:3000/admin/bill/upload-and-get-gemini-invoice', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    console.log('Response from server:', response.data); // Log the response data
+    alert('Photo uploaded successfully');
+  } catch (error) {
+    console.error('Error uploading photo: ', error);
+  }
+};
+
 
   return (
     <div className="App">
