@@ -43,15 +43,16 @@ function Table() {
         try {
             const formData = new FormData();
             formData.append('bill-image', imageFile); // Assuming the key is 'image', adjust as per your backend
-            const response = await fetch('YOUR_BACKEND_URL', {
+            console.log(formData);
+            const response = await fetch('http://localhost:3000/admin/bill/upload-and-get-gemini-invoice', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
                 body: formData
             });
-            const responseData = await response.json();
-            updateFormInputs(responseData); // Update form inputs with response data
+            //const responseData = await response.json();
+            updateFormInputs(response); // Update form inputs with response data
         } catch (error) {
             console.error('Error uploading image:', error);
         }

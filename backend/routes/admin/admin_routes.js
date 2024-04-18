@@ -27,6 +27,10 @@ router.use('/salesGraph',getOrderAmountsByYear);
 router.use('/expenditure', expenditure);
 router.use('/employees',employees);
 router.use('/attendance',attendance);
-router.use('/bill',bill);
+router.use('/bill',(req, res, next) => {
+    console.log(req.headers); // Log request headers
+    console.log(req.file); // Log uploaded file information
+    next(); // Move to the next middleware
+},bill);
 
 module.exports= router;

@@ -15,6 +15,9 @@ function fileToGenerativePart(path, mimeType) {
 }
 async function run_gemini(req, res){
   try {
+    if (!req.file || !req.file.buffer) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
     // Process the uploaded image and extract information
     const extractedInfo = await run(req.file.buffer);
 
