@@ -2,7 +2,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 
 // Access your API key as an environment variable (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI('AIzaSyBJWUsNvlvM6sz1et4Nv8zsmuhHVG4XiDo');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Converts local file information to a GoogleGenerativeAI.Part object.
 function fileToGenerativePart(path, mimeType) {
@@ -13,8 +13,20 @@ function fileToGenerativePart(path, mimeType) {
     },
   };
 }
+async function run_gemini(req, res){
+  try {
+    // Process the uploaded image and extract information
+    const extractedInfo = await run(req.file.buffer);
 
-async function run_gemini(imageBuffer) {
+    // Send the extracted information as a JSON response
+    res.json(extractedInfo);
+  } catch (error) {
+    // Handle errors
+    console.error("Error processing image:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+async function run(imageBuffer) {
   // For text-and-image input (multimodal), use the gemini-pro-vision model
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
