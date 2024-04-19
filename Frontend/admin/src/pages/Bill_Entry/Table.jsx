@@ -9,7 +9,6 @@ function Table() {
         { id: 1, productName: '', category: '', qty: '', price: '', tax: '', totalAmount: '' }
     ]);
     const [nextId, setNextId] = useState(2);
-    const [imageFile, setImageFile] = useState(null); // State to store the image file
     const [formData, setFormData] = useState({
         vendor_name: '',
         bill_number: '',
@@ -38,25 +37,6 @@ function Table() {
         setRows(newRows);
     };
 
-    // Function to handle image upload and post request
-    // const handleImageUpload = async () => {
-    //     try {
-    //         const formData = new FormData();
-    //         formData.append('bill-image', imageFile); // Assuming the key is 'image', adjust as per your backend
-    //         const response = await fetch('YOUR_BACKEND_URL', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data',
-    //             },
-    //             body: formData
-    //         });
-    //         const responseData = await response.json();
-       //      updateFormInputs(responseData); // Update form inputs with response data
-    //     } catch (error) {
-    //         console.error('Error uploading image:', error);
-    //     }
-    // };
-
     // Function to update form inputs with response data
     const updateFormInputs = (data) => {
         setFormData(data);
@@ -65,6 +45,24 @@ function Table() {
     // Effect to update form inputs when formData changes
     useEffect(() => {
         // Update form inputs based on formData state
+        // Loop through the formData and update the corresponding input values
+        Object.keys(formData).forEach(key => {
+            const inputElement = document.getElementById(key);
+            if (inputElement) {
+                inputElement.value = formData[key];
+            }
+        });
+
+        // Update rows state with products data
+        setRows(formData.products.map((product, index) => ({
+            id: index + 1,
+            productName: product.product_name,
+            category: product.category,
+            qty: product.qty,
+            price: product.price,
+            tax: product.tax,
+            totalAmount: product.total_amount
+        })));
     }, [formData]);
 
     return (
@@ -73,11 +71,9 @@ function Table() {
                 Vendor details:
             </div>
             <div>
-             <Uploader />
+                <Uploader updateFormInputs={updateFormInputs} /> {/* Pass updateFormInputs function as prop */}
             </div>
-            <div>
-                
-            </div>
+            
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex' }}>
                     <div className="form-group" style={{ marginRight: '10px' }}>
