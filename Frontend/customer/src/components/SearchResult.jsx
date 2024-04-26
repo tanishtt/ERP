@@ -2,10 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 import { Link } from "react-router-dom";
+import socketIOClient from 'socket.io-client';
 
 import "./SearchResult.css";
 
 export const SearchResult = ({ result, addProduct }) => {
+  const socket = socketIOClient('http://localhost:4000');
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -15,6 +17,7 @@ export const SearchResult = ({ result, addProduct }) => {
   const handleAddToProduct = () => {
     if (typeof addProduct === 'function') {
       addProduct(result);
+      socket.emit('productAdded', result);
     }
   };
 
