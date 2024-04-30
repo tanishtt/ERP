@@ -1,5 +1,1 @@
-/Frontend/customer/node_modules/
-/Frontend/cashier/node_modules/
-/Frontend/admin/node_modules/
-/Frontend/node_modules/
-node_modules
+Frontend/customer/node_modules/.package-lock.json
