@@ -1,16 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
+import io from 'socket.io-client';
 
 const Cart = () => {
   const state = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [socket, setSocket] = useState(null);
 
+  useEffect(() => {
+    const socket = io('http://localhost:3000');
+    setSocket(socket);
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('cashier:productAdded', (product) => {
+        dispatch(addCart(product));
+      });
+      socket.on('cashier:productRemoved', (product) => {
+        dispatch(delCart(product));
+      });
+    }
+
+    return () => {
+      if (socket) {
+        socket.off('cashier:productAdded');
+      }
+    };
+  }, [socket, dispatch]);
+
+  const addItem = (product) => {
+    dispatch(addCart(product));
+    if (socket) {
+      socket.emit('cashier:addItem', product);
+    }
+  };
+
+  const removeItem = (product) => {
+    dispatch(delCart(product));
+    if (socket) {
+      socket.emit('cashier:removeItem', product);
+    }
+  };
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -40,13 +81,6 @@ const Cart = () => {
     </div>
   );
 
-  const addItem = (product) => {
-    dispatch(addCart(product));
-  };
-
-  const removeItem = (product) => {
-    dispatch(delCart(product));
-  };
 
   const ShowCart = () => {
     let subtotal = 0;
@@ -382,17 +416,6 @@ const Cart = () => {
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
   );
 };
 

@@ -1,12 +1,43 @@
-import React from "react";
-import { Footer, Navbar } from "../components";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import io from 'socket.io-client';
+
+const socket = io("http://localhost:3000"); // Connect to your server's WebSocket endpoint
 
 const Cart = () => {
   const state = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const socket = io('http://localhost:3000');
+    setSocket(socket);
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('customer:productAdded', (product) => {
+        dispatch(addCart(product));
+      });
+      socket.on('customer:productRemoved', (product) => {
+        dispatch(delCart(product));
+      });
+    }
+
+    return () => {
+      if (socket) {
+        socket.off('customer:productAdded');
+      }
+    };
+  }, [socket, dispatch]);
 
   const EmptyCart = () => {
     return (
@@ -22,9 +53,12 @@ const Cart = () => {
 
   const addItem = (product) => {
     dispatch(addCart(product));
+    socket.emit("customer:addItem", product); // Emit addItem event
   };
+
   const removeItem = (product) => {
     dispatch(delCart(product));
+    socket.emit("customer:removeItem", product); // Emit removeItem event
   };
 
   const ShowCart = () => {
