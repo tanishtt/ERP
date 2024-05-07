@@ -65,11 +65,15 @@ const Navbar = () => {
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div className="input-group" style={{ width: '50%' }}>
                   <SearchBar setResults={setResults} />
+                  <button id="startButton">Start Recognition</button>
+
                   <button
                     className="btn btn-outline-secondary fs-1"
                     style={styles.btnCircle}
                     type="button"
                   ></button>
+
+                  <script src="{{ url_for('static', filename='script.js') }}"></script>
                 </div>
               </div>
             </div>
