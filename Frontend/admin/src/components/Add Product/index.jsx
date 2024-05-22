@@ -3,6 +3,7 @@ import Uploader from './Uploader';
 import './index.css';
 
 function App1() {
+  // State to manage form data
   const [formData, setFormData] = useState({
     product_name: '',
     price: '',
@@ -11,12 +12,15 @@ function App1() {
     description: ''
   });
 
+  // State to manage categories fetched from API
   const [categories, setCategories] = useState([]);
 
+  // Fetch categories when the component mounts
   useEffect(() => {
     fetchCategories();
   }, []);
 
+  // Function to fetch categories from the API
   const fetchCategories = async () => {
     try {
       const response = await fetch('http://localhost:3000/admin/add-product/api/category-drop-down');
@@ -30,6 +34,7 @@ function App1() {
     }
   };
 
+  // Handler for input change events to update form state
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setFormData(prevState => ({
@@ -38,6 +43,7 @@ function App1() {
     }));
   };
 
+  // Handler for form submission
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
@@ -78,8 +84,6 @@ function App1() {
         </div>
         <form onSubmit={onSubmitHandler} style={{ marginTop: "230px", marginLeft: "350px" }}>
           <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px' }}>
-
-            
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex' }}>
                 <div className="form-group" style={{ marginRight: '10px' }}>
@@ -111,8 +115,6 @@ function App1() {
                 <textarea id="description" className="form-control" name="description" value={formData.description} onChange={onChangeHandler} style={{ flex: 1, backgroundColor: '#e6e3e3', borderRadius: '5px', marginBottom: '10px', height: '100px', overflowY: 'auto' }} />
               </div>
             </div>
-
-
 
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
               <div>

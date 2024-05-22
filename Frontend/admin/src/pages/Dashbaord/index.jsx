@@ -3,16 +3,18 @@ import {
   ShoppingCartOutlined,
   ShoppingOutlined,
   UserOutlined,
-} from "@ant-design/icons";
-import { Card, Space, Statistic, Table, Typography } from "antd";
+} from "@ant-design/icons";  // Imported icons from Ant Design
+import { Card, Space, Statistic, Table, Typography } from "antd"; // Imported components from Ant Design
 import { useEffect, useState } from "react";
-import { getCustomers, getInventory, getOrders, getRevenue, getSales, getCustomer } from "../../API";
+import { getCustomers, getInventory, getOrders, getRevenue, getSales, getCustomer } from "../../API";  // Imported API functions
 
 
-import AreaGraph from "../Graphs/Area";
-import PieGraph from "../Graphs/Pie";
-import {Chart as ChartJS, ArcElement, Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler} from 'chart.js';
-import BarGraph from "../Graphs/Bar";
+import AreaGraph from "../Graphs/Area";  // Imported AreaGraph component
+import PieGraph from "../Graphs/Pie";  // Imported PieGraph component
+import {Chart as ChartJS, ArcElement, Title, Tooltip, LineElement, Legend, CategoryScale, LinearScale, PointElement, Filler} from 'chart.js';  // Imported Chart.js components
+import BarGraph from "../Graphs/Bar";  // Imported BarGraph component
+
+// Registering required Chart.js components
 ChartJS.register(
   Title, Tooltip, LineElement, Legend,
   CategoryScale, LinearScale, PointElement, Filler, ArcElement,
@@ -20,42 +22,12 @@ ChartJS.register(
 
 
 
-
-// import {
-//   Chart as ChartJS,
-
-//   Tooltip,
-//   Legend
-// } from 'chart.js';
-
-
-// ChartJS.register(
- 
-//   Tooltip,
-//   Legend
-// );
-
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   BarElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-// } from "chart.js";
-//import { Bar } from "react-chartjs-2";
-
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   BarElement,
-//   Title,
-//   Tooltip,
-//   Legend
-// );
+/**
+ * Dashboard component displaying sales and customer-related statistics.
+ */
 
 function Dashboard1() {
+  // States to store data fetched from APIs
   const [sales, setSales] = useState(0);
   const [customer, setCustomer] = useState(0);
   const [orders, setOrders] = useState(0);
@@ -63,6 +35,7 @@ function Dashboard1() {
   const [customers, setCustomers] = useState(0);
   const [revenue, setRevenue] = useState(0);
 
+  // Fetching data from APIs on component mount
   useEffect(() => {
     getSales().then((res) => {
       console.log(res); 
@@ -88,17 +61,18 @@ function Dashboard1() {
 
 
 
-
+  // Rendering JSX
   return (
     <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '20px' , margin: '20px', backgroundColor: '#f0f0f0'}}>
     <div style={{width:"73vw"}}>
-
+    {/* Sales Dashboard */}
     <div>
   <Space size={10} direction="vertical">
     <Typography.Title level={3} style={{ marginLeft: '20px', marginBottom:'10px' }}>
       Sales Dashboard
     </Typography.Title>
     <Space size={[3, 3]} direction="horizontal verticle" horizontalSize={200} verticalSize={200}>
+    {/* Cards displaying sales statistics */}
       <DashboardCard
         icon={
           <DollarCircleOutlined
@@ -163,13 +137,14 @@ function Dashboard1() {
   </Space>
 </div>
 
-
+{/* Customer Dashboard */}
 <div>
   <Space size={10} direction="vertical">
     <Typography.Title level={3} style={{ marginLeft: '20px', marginBottom:'10px' }}>
       Customer Dashboard
     </Typography.Title>
     <Space size={[3, 3]} direction="horizontal verticle" horizontalSize={200} verticalSize={200}>
+    {/* Cards displaying customer statistics */}
       <DashboardCard
         icon={
           <UserOutlined
@@ -232,8 +207,9 @@ function Dashboard1() {
       />
     </Space>
 
+    {/* Graphs */}
       <Space>
-       
+       {/* Area graph, Pie graph, Bar graph */}
         {
         <div style={{ display: 'flex', marginBottom:"20px", height:"40vh"}}>
         <div style={{ height:"100px", weidth:"100px" }}>
@@ -256,6 +232,11 @@ function Dashboard1() {
   );
 }
 
+/**
+ * Functional component to render a dashboard card.
+ * @param {Object} param0 - Props containing card title, value, and icon.
+ */
+
 function DashboardCard({ title, value, icon }) {
   return (
     <Card>
@@ -266,245 +247,6 @@ function DashboardCard({ title, value, icon }) {
     </Card>
   );
 }
-// function RecentOrders() {
-//   const [dataSource, setDataSource] = useState([]);
-//   const [loading, setLoading] = useState(false);
 
-//   useEffect(() => {
-//     setLoading(true);
-//     getOrders().then((res) => {
-//       setDataSource(res.products.splice(0, 3));
-//       setLoading(false);
-//     });
-//   }, []);
-// }
-
-
-
-
-
-
-
-// // Area Graph Start
-
-// function AreaGraph() {
-//   const [data, setData] = useState({
-//     labels:["Jan", "Feb", "March", "April", "May", "June", "July", "August", "Sept", "Oct", "Nov", "Dec"],
-//     datasets:[
-//       {
-//         label:"First Dataset",
-//         data:[10, 20, 30 , 42, 51, 82, 31, 59, 61, 73, 91, 58],
-//         backgroundColor:'yellow',
-//         borderColor:'red',
-//         tension:0.4,
-//         fill:true,
-//         pointStyle:'rect',
-//         pointBorderColor:'blue',
-//         pointBackgroundColor:'#fff',
-//         showLine:true,
-//         drawBorder:false
-//       }
-//     ],
-//   }
-//   )
-
-//   useEffect(() => {
-//     const arr =[];
-//     fetch('http://localhost:3031/order_amounts_by_year')
-//       .then(response => response.json())
-//       .then(json => {console.log("json", json)
-//       json.map((item, index) => {
-//           arr.push(item.y)
-//           arr.reverse();
-
-//       })
-
-//       setData(  {
-//         labels:["2020", "2021", "2022"],
-//         datasets:[
-//           {
-//             label:"First Dataset",
-//             data:arr,
-//             backgroundColor:'yellow',
-//             borderColor:'red',
-//             tension:0.4,
-//             fill:true,
-//             pointStyle:'rect',
-//             pointBorderColor:'blue',
-//             pointBackgroundColor:'#fff',
-//             showLine:true,
-//             drawBorder:false
-//           }
-//         ],
-//       }
-//       )
-  
-// }
-//   )  
-//       console.log("arr", arr)
-  
-// },[]);
-//   return (
-//     <div className="App" style={{width:'800px', height:'800px'}}>
-//       <Line data={data}>Hello</Line>
-//     </div>
-//   );
-
-  
-// }
-
-// // Area Graph Ends
-
-// // Pie Graph Starts
-
-// function PieGraph() {
-//   const [data, setData] = useState({
-//       labels: ['One', 'Two', 'Three'],
-//       datasets: [
-//           {
-//               data: [3, 6, 9],
-//               backgroundColor: ['aqua', 'bloodorange', 'purple']
-//           }
-//       ],
-//   }
-//   )
-
-//   const options = {
-      
-//   }
-
-//   useEffect(() => {
-//     const arr =[];
-//     fetch('http://localhost:3031/order_amounts_by_year')
-//       .then(response => response.json())
-//       .then(json => {console.log("json", json)
-//       json.map((item, index) => {
-//           arr.push(item.y)
-//           arr.reverse();
-
-//       })
-
-//       setData(  {
-//         labels: ['One', 'Two', 'Three'],
-//       datasets: [
-//           {
-//               data:arr,
-//               backgroundColor: ['aqua', 'bloodorange', 'purple']
-//           }
-//       ],
-//       }
-//       )
-  
-// }
-//   )  
-//       console.log("arr", arr)
-  
-// },[])  
-
-
-//   return (
-//       <div className="App">
-//           <div
-//               style={
-//                   {
-//                       padding: '20px',
-//                       width: '50%'
-//                   }
-//               }>
-//               <Pie
-//                   data = {data}
-//                   options = {options}
-//                   >
-//                   </Pie>
-//           </div>
-//       </div>
-//   );
-// }
-
-
-// // Pie Graph Ends
-
-
-
-
-
-
-
-
-//   return (
-//     //<>
-//     //   <Typography.Text>Recent Orders</Typography.Text>
-//     //   <Table
-//     //     columns={[
-//     //       {
-//     //         title: "Title",
-//     //         dataIndex: "title",
-//     //       },
-//     //       {
-//     //         title: "Quantity",
-//     //         dataIndex: "quantity",
-//     //       },
-//     //       {
-//     //         title: "Price",
-//     //         dataIndex: "discountedPrice",
-//     //       },
-//     //     ]}
-//     //     loading={loading}
-//     //     dataSource={dataSource}
-//     //     pagination={false}
-//     //   ></Table>
-//     // </>
-//   //);
-// }
-
-// function DashboardChart() {
-//   const [reveneuData, setReveneuData] = useState({
-//     labels: [],
-//     datasets: [],
-//   });
-
-//   useEffect(() => {
-//     getRevenue().then((res) => {
-//       const labels = res.carts.map((cart) => {
-//         return `User-${cart.userId}`;
-//       });
-//       const data = res.carts.map((cart) => {
-//         return cart.discountedTotal;
-//       });
-
-//       const dataSource = {
-//         labels,
-//         datasets: [
-//           {
-//             label: "Revenue",
-//             data: data,
-//             backgroundColor: "rgba(255, 0, 0, 1)",
-//           },
-//         ],
-//       };
-
-//       setReveneuData(dataSource);
-//     });
-//   }, []);
-
-//   const options = {
-//     responsive: true,
-//     plugins: {
-//       legend: {
-//         position: "bottom",
-//       },
-//       title: {
-//         display: true,
-//         text: "Order Revenue",
-//       },
-//     },
-//   };
-
-//   return (
-//     <Card style={{ width: 500, height: 250 }}>
-//       <Bar options={options} data={reveneuData} />
-//     </Card>
-//   );
-// }
 export default Dashboard1;
 

@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function Table() {
+    // State to manage the data fetched from the server
     const [data, setData] = useState([]);
+    
+    // State to manage the form data for adding/editing employees
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -13,14 +16,17 @@ function Table() {
         hire_date: '',
         emergency_contact_name: '',
         emergency_contact_phone: '',
-        
     });
+
+    // State to manage the ID of the employee being edited
     const [editId, setEditId] = useState(null);
 
+    // Fetch data when the component mounts
     useEffect(() => {
         fetchData();
     }, []);
 
+    // Function to fetch data from the server
     const fetchData = async () => {
         try {
             const response = await fetch('http://localhost:3030/employee');
@@ -34,6 +40,7 @@ function Table() {
         }
     };
 
+    // Function to handle form submission for adding a new employee
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -45,7 +52,7 @@ function Table() {
                 body: JSON.stringify(formData),
             });
             if (!response.ok) {
-                throw new Error('Failed to add product');
+                throw new Error('Failed to add employee');
             }
             const newData = await response.json();
             setData([...data, newData]);
@@ -61,25 +68,28 @@ function Table() {
                 emergency_contact_phone: '',
             });
         } catch (error) {
-            console.error("Error adding product: ", error);
+            console.error("Error adding employee: ", error);
         }
     };
 
+    // Function to handle input changes in the form
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
 
+    // Function to handle editing an employee
     const handleEdit = (id) => {
-        const productToEdit = data.find(product => product.id === id);
-        if (productToEdit) {
-            setFormData(productToEdit);
+        const employeeToEdit = data.find(employee => employee.id === id);
+        if (employeeToEdit) {
+            setFormData(employeeToEdit);
             setEditId(id);
         } else {
-            console.error("Product not found for editing");
+            console.error("Employee not found for editing");
         }
     };
 
+    // Function to handle updating an employee's data
     const handleUpdate = async () => {
         try {
             const response = await fetch(`http://localhost:3030/employee/${editId}`, {
@@ -90,14 +100,14 @@ function Table() {
                 body: JSON.stringify(formData),
             });
             if (!response.ok) {
-                throw new Error('Failed to update product');
+                throw new Error('Failed to update employee');
             }
             await response.json();
-            const updatedData = data.map(product => {
-                if (product.id === editId) {
+            const updatedData = data.map(employee => {
+                if (employee.id === editId) {
                     return formData;
                 }
-                return product;
+                return employee;
             });
             setData(updatedData);
             setFormData({
@@ -113,22 +123,23 @@ function Table() {
             });
             setEditId(null);
         } catch (error) {
-            console.error("Error updating product: ", error);
+            console.error("Error updating employee: ", error);
         }
     };
 
+    // Function to handle deleting an employee
     const handleDelete = async (id) => {
         try {
             const response = await fetch(`http://localhost:3030/employee/${id}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {
-                throw new Error('Failed to delete product');
+                throw new Error('Failed to delete employee');
             }
-            const updatedData = data.filter(product => product.id !== id);
+            const updatedData = data.filter(employee => employee.id !== id);
             setData(updatedData);
         } catch (error) {
-            console.error("Error deleting product: ", error);
+            console.error("Error deleting employee: ", error);
         }
     };
 
@@ -170,21 +181,21 @@ function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(product => (
-                        <tr key={product.id}>
-                            <td>{product.id}</td>
-                            <td>{product.name}</td>
-                            <td>{product.email}</td>
-                            <td>{product.phone}</td>
-                            <td>{product.address}</td>
-                            <td>{product.job_title}</td>
-                            <td>{product.salary}</td>
-                            <td>{product.hire_date}</td>
-                            <td>{product.emergency_contact_name}</td>
-                            <td>{product.emergency_contact_phone}</td>
+                    {data.map(employee => (
+                        <tr key={employee.id}>
+                            <td>{employee.id}</td>
+                            <td>{employee.name}</td>
+                            <td>{employee.email}</td>
+                            <td>{employee.phone}</td>
+                            <td>{employee.address}</td>
+                            <td>{employee.job_title}</td>
+                            <td>{employee.salary}</td>
+                            <td>{employee.hire_date}</td>
+                            <td>{employee.emergency_contact_name}</td>
+                            <td>{employee.emergency_contact_phone}</td>
                             <td>
-                                <button onClick={() => handleEdit(product.id)}>Edit</button>
-                                <button onClick={() => handleDelete(product.id)}>Delete</button>
+                                <button onClick={() => handleEdit(employee.id)}>Edit</button>
+                                <button onClick={() => handleDelete(employee.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

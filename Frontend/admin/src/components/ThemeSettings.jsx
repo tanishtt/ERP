@@ -6,12 +6,16 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { themeColors } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 
+// ThemeSettings component for changing theme and color settings
 const ThemeSettings = () => {
   const { setColor, setMode, currentMode, currentColor, setThemeSettings } = useStateContext();
 
   return (
+    // Main container for theme settings with semi-transparent background
     <div className="bg-half-transparent w-screen fixed nav-item top-0 right-0">
-      <div className="float-right h-screen dark:text-gray-200  bg-white dark:bg-[#484B52] w-400">
+      <div className="float-right h-screen dark:text-gray-200 bg-white dark:bg-[#484B52] w-400">
+        
+        {/* Header section with title and close button */}
         <div className="flex justify-between items-center p-4 ml-4">
           <p className="font-semibold text-lg">Settings</p>
           <button
@@ -22,11 +26,13 @@ const ThemeSettings = () => {
           >
             <MdOutlineCancel />
           </button>
-
         </div>
+        
+        {/* Theme options section */}
         <div className="flex-col border-t-1 border-color p-4 ml-4">
-          <p className="font-semibold text-xl ">Theme Option</p>
+          <p className="font-semibold text-xl">Theme Option</p>
 
+          {/* Light theme option */}
           <div className="mt-4">
             <input
               type="radio"
@@ -42,6 +48,8 @@ const ThemeSettings = () => {
               Light
             </label>
           </div>
+
+          {/* Dark theme option */}
           <div className="mt-2">
             <input
               type="radio"
@@ -58,8 +66,10 @@ const ThemeSettings = () => {
             </label>
           </div>
         </div>
+
+        {/* Theme colors section */}
         <div className="p-4 border-t-1 border-color ml-4">
-          <p className="font-semibold text-xl ">Theme Colors</p>
+          <p className="font-semibold text-xl">Theme Colors</p>
           <div className="flex gap-3">
             {themeColors.map((item, index) => (
               <TooltipComponent key={index} content={item.name} position="TopCenter">
@@ -67,12 +77,14 @@ const ThemeSettings = () => {
                   className="relative mt-2 cursor-pointer flex gap-5 items-center"
                   key={item.name}
                 >
+                  {/* Color selection button */}
                   <button
                     type="button"
                     className="h-10 w-10 rounded-full cursor-pointer"
                     style={{ backgroundColor: item.color }}
                     onClick={() => setColor(item.color)}
                   >
+                    {/* Check icon to indicate selected color */}
                     <BsCheck className={`ml-2 text-2xl text-white ${item.color === currentColor ? 'block' : 'hidden'}`} />
                   </button>
                 </div>

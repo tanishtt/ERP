@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function Table() {
-    const [data, setData] = useState([]);
-    const [formData, setFormData] = useState({
+    // State variables to manage data, form input, and editing
+    const [data, setData] = useState([]); // Data from API
+    const [formData, setFormData] = useState({ // Form data for adding or editing a record
         category: '',
         name: '',
         date: '',
@@ -12,12 +13,14 @@ function Table() {
         status: '',
         email: ''
     });
-    const [editId, setEditId] = useState(null);
+    const [editId, setEditId] = useState(null); // ID of the record being edited
 
+    // Fetch data from the API when the component mounts
     useEffect(() => {
         fetchData();
     }, []);
 
+    // Function to fetch data from the API
     const fetchData = async () => {
         try {
             const response = await fetch('http://localhost:3000/admin/expenditure/get-expenditure');
@@ -31,9 +34,11 @@ function Table() {
         }
     };
 
+    // Function to handle form submission for adding or editing a record
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            // Post data to the API
             const response = await fetch('http://localhost:3000/admin/expenditure/post-expenditure', {
                 method: 'POST',
                 headers: {
@@ -44,13 +49,10 @@ function Table() {
             if (!response.ok) {
                 throw new Error('Failed to add product');
             }
-            else{
-                console.log('abc');
-            }
+            // Update the data state with the new record
             const newData = await response.json();
-            console.log(newData);
-            console.log(data)
             setData([...data, ...newData]);
+            // Clear the form input
             setFormData({
                 category: '',
                 name: '',
@@ -65,11 +67,13 @@ function Table() {
         }
     };
 
+    // Function to handle input changes in the form
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
 
+    // Function to handle editing a record
     const handleEdit = (id) => {
         const productToEdit = data.find(product => product.expenditure_id === id);
         if (productToEdit) {
@@ -80,8 +84,10 @@ function Table() {
         }
     };
 
+    // Function to handle updating a record
     const handleUpdate = async () => {
         try {
+            // Update data in the API
             const response = await fetch(`http://localhost:3000/admin/expenditure/update-expenditure/${editId}`, {
                 method: 'POST',
                 headers: {
@@ -89,24 +95,18 @@ function Table() {
                 },
                 body: JSON.stringify(formData),
             });
-            console.log(response.ok);
             if (!response.ok) {
                 throw new Error('Failed to update product');
             }
-            const responseData=await response.json();
-            console.log(responseData);
-
+            // Update the data state with the updated record
             const updatedData = data.map(product => {
                 if (product.expenditure_id === editId) {
-                    console.log(formData);
-
-                    return { expenditure_id:product.expenditure_id, ...formData};
+                    return { expenditure_id: product.expenditure_id, ...formData };
                 }
-                console.log(typeof product.expenditure_id);
-                console.log(typeof editId);
                 return product;
             });
             setData(updatedData);
+            // Clear the form input and edit ID
             setFormData({
                 category: '',
                 name: '',
@@ -122,14 +122,17 @@ function Table() {
         }
     };
 
+    // Function to handle deleting a record
     const handleDelete = async (id) => {
         try {
+            // Delete data from the API
             const response = await fetch(`http://localhost:3000/admin/expenditure/delete-expenditure/${id}`, {
                 method: 'DELETE',
             });
             if (!response.ok) {
                 throw new Error('Failed to delete product');
             }
+            // Remove the deleted record from the data state
             const updatedData = data.filter(product => product.expenditure_id !== id);
             setData(updatedData);
         } catch (error) {
@@ -139,6 +142,7 @@ function Table() {
 
     return (
         <div className='container'>
+            {/* Form for adding or editing a record */}
             <div className='form-div'>
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="category" placeholder="Category" value={formData.category} onChange={handleInputChange} />
@@ -148,6 +152,7 @@ function Table() {
                     <input type="text" name="amount" placeholder="Amount" value={formData.amount} onChange={handleInputChange} />
                     <input type="text" name="status" placeholder="Status" value={formData.status} onChange={handleInputChange} />
                     <input type="text" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} />
+                    {/* Conditional rendering of Add or Update button based on editId */}
                     {editId ? (
                         <button type="button" onClick={handleUpdate}>Update</button>
                     ) : (
@@ -155,6 +160,7 @@ function Table() {
                     )}
                 </form>
             </div>
+            {/* Table to display the data */}
             <table>
                 <thead>
                     <tr>
@@ -170,6 +176,7 @@ function Table() {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* Mapping through data to display each record */}
                     {data.map(product => (
                         <tr key={product.expenditure_id}>
                             <td>{product.expenditure_id}</td>
@@ -180,6 +187,7 @@ function Table() {
                             <td>{product.amount}</td>
                             <td>{product.status}</td>
                             <td>{product.email}</td>
+                            {/* Buttons for editing and deleting each record */}
                             <td>
                                 <button onClick={() => handleEdit(product.expenditure_id)}>Edit</button>
                                 <button onClick={() => handleDelete(product.expenditure_id)}>Delete</button>
@@ -193,3 +201,4 @@ function Table() {
 }
 
 export default Table;
+

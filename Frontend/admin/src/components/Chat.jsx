@@ -1,22 +1,26 @@
-import React from 'react';
-import { MdOutlineCancel } from 'react-icons/md';
+import React from 'react'; // Importing React
+import { MdOutlineCancel } from 'react-icons/md'; // Importing the cancel icon from react-icons library
 
-import { Button } from '.';
-import { chatData } from '../data/dummy';
-import { useStateContext } from '../contexts/ContextProvider';
+import { Button } from '.'; // Importing Button component
+import { chatData } from '../data/dummy'; // Importing dummy chat data
+import { useStateContext } from '../contexts/ContextProvider'; // Importing custom context provider
 
+// Defining the Chat functional component
 const Chat = () => {
-  const { currentColor } = useStateContext();
+  const { currentColor } = useStateContext(); // Destructuring currentColor from the context
 
   return (
     <div className="nav-item absolute right-5 md:right-52 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
+      {/* Main container for the chat box */}
       <div className="flex justify-between items-center">
+        {/* Header section with title and new messages count */}
         <div className="flex gap-3">
           <p className="font-semibold text-lg dark:text-gray-200">Messages</p>
-          <button type="button" className="text-white  text-xs rounded p-1 px-2 bg-orange">
+          <button type="button" className="text-white text-xs rounded p-1 px-2 bg-orange">
             5 New
           </button>
         </div>
+        {/* Cancel button to close the chat box */}
         <Button
           icon={<MdOutlineCancel />}
           color="rgb(153, 171, 180)"
@@ -26,20 +30,24 @@ const Chat = () => {
         />
       </div>
       <div className="mt-5 ">
+        {/* Mapping through chat data to display each chat message */}
         {chatData?.map((item, index) => (
           <div key={index} className="flex items-center gap-5 border-b-1 border-color p-3 leading-8 cursor-pointer">
             <div className="relative">
+              {/* Displaying the user's profile picture */}
               <img
                 className="rounded-full h-10 w-10"
                 src={item.image}
                 alt={item.message}
               />
+              {/* Dot indicator for new messages */}
               <span
                 style={{ background: item.dotColor }}
                 className="absolute inline-flex rounded-full h-2 w-2 right-0 -top-1"
               />
             </div>
             <div>
+              {/* Displaying the message content */}
               <p className="font-semibold dark:text-gray-200 ">{item.message}</p>
               <p className="text-gray-500 dark:text-gray-400 text-sm">{item.desc}</p>
               <p className="text-gray-500 dark:text-gray-400 text-xs">{item.time}</p>
@@ -47,6 +55,7 @@ const Chat = () => {
           </div>
         ))}
         <div className="mt-5">
+          {/* Button to see all messages */}
           <Button
             color="white"
             bgColor={currentColor}
@@ -60,4 +69,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default Chat; // Exporting the Chat component as the default export
