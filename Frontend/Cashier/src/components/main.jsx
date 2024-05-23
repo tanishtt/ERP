@@ -7,21 +7,29 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 import io from 'socket.io-client';
 
+// Define the Cart component
 const Cart = () => {
-  const state = useSelector((state) => state.handleCart);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [socket, setSocket] = useState(null);
+    // Get the state of the cart from the Redux store
+    const state = useSelector((state) => state.handleCart);
+    // Create a dispatch function to dispatch actions to the Redux store
+    const dispatch = useDispatch();
+    // Create a navigate function to navigate to different routes
+    const navigate = useNavigate();
+    // Create a socket state to hold the socket connection
+    const [socket, setSocket] = useState(null);
 
+     // UseEffect hook to set up the socket connection when the component mounts
   useEffect(() => {
     const socket = io('http://localhost:3000');
     setSocket(socket);
 
+    // Clean up the socket connection when the component unmounts
     return () => {
       socket.disconnect();
     };
   }, []);
 
+   // UseEffect hook to set up socket event listeners when the socket is connected
   useEffect(() => {
     if (socket) {
       socket.on('cashier:productAdded', (product) => {
@@ -32,6 +40,7 @@ const Cart = () => {
       });
     }
 
+    // Clean up the socket event listeners when the component unmounts
     return () => {
       if (socket) {
         socket.off('cashier:productAdded');
@@ -39,6 +48,7 @@ const Cart = () => {
     };
   }, [socket, dispatch]);
 
+  // Function to add an item to the cart and emit the socket event
   const addItem = (product) => {
     dispatch(addCart(product));
     if (socket) {
@@ -46,12 +56,15 @@ const Cart = () => {
     }
   };
 
+  // Function to remove an item from the cart and emit the socket event
   const removeItem = (product) => {
     dispatch(delCart(product));
     if (socket) {
       socket.emit('cashier:removeItem', product);
     }
   };
+
+  // State variables for customer information and order details
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -62,6 +75,7 @@ const Cart = () => {
   const [discountValue, setDiscountValue] = useState(10);
   const [includeShipping, setIncludeShipping] = useState(true);
 
+  // Function to get the current date in YYYY-MM-DD format
   const getCurrentDate = () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -70,6 +84,7 @@ const Cart = () => {
     return `${year}-${month}-${day}`;
   };
 
+  // Component to display when the cart is empty
   const EmptyCart = () => (
     <div className="container2" style={{ marginRight: "10px", width: "1200px" }}>
       <div className="rows">
@@ -81,7 +96,7 @@ const Cart = () => {
     </div>
   );
 
-
+  // Component to display the cart items and order summary
   const ShowCart = () => {
     let subtotal = 0;
     let shipping = includeShipping ? 30.0 : 0;
@@ -92,6 +107,7 @@ const Cart = () => {
       totalItems += item.qty;
     });
 
+    // Function to calculate the total amount including discount and shipping
     const calculateTotalAmount = () => {
       let discount = 0;
       if (discountType === "percentage") {
@@ -102,6 +118,7 @@ const Cart = () => {
       return Math.round(subtotal + shipping - discount);
     };
 
+    // Function to calculate the discount amount
     const calculateDiscountAmount = () => {
       let discount = 0;
       if (discountType === "percentage") {
@@ -112,6 +129,7 @@ const Cart = () => {
       return discount.toFixed(2);
     };
 
+    // Handle change in discount value
     const handleDiscountChange = (e) => {
       const newDiscountAmount = parseFloat(e.target.value);
       const newDiscountType = newDiscountAmount > 0 ? "amount" : "percentage";
@@ -119,6 +137,7 @@ const Cart = () => {
       setDiscountType(newDiscountType);
     };
 
+    // Handle the checkout process
     const handleCheckout = () => {
       const cartItems = state.map((item) => ({
         product_id: item.product_id,
@@ -138,6 +157,7 @@ const Cart = () => {
         
       };
 
+      // Send the order data to the server
       fetch("http://localhost:3000/cashier/handleOrderSubmit", {
         method: "POST",
         headers: {
