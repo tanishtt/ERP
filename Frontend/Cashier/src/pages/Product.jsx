@@ -1,47 +1,51 @@
 import React, { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import { Link, useParams } from "react-router-dom";
-import Marquee from "react-fast-marquee";
-import { useDispatch } from "react-redux";
-import { addCart } from "../redux/action";
+import Skeleton from "react-loading-skeleton"; // Import Skeleton for loading placeholder
+import { Link, useParams } from "react-router-dom"; // Import Link and useParams from react-router-dom
+import Marquee from "react-fast-marquee"; // Import Marquee for scrolling similar products
+import { useDispatch } from "react-redux"; // Import useDispatch from react-redux
+import { addCart } from "../redux/action"; // Import the addCart action
 
-import { Footer, Navbar } from "../components";
+import { Footer, Navbar } from "../components"; // Import Footer and Navbar components
 
 const Product = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState([]);
-  const [similarProducts, setSimilarProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [loading2, setLoading2] = useState(false);
+  const { id } = useParams(); // Get the product ID from the URL parameters
+  const [product, setProduct] = useState([]); // State to hold the product details
+  const [similarProducts, setSimilarProducts] = useState([]); // State to hold similar products
+  const [loading, setLoading] = useState(false); // State to handle loading state for the product
+  const [loading2, setLoading2] = useState(false); // State to handle loading state for similar products
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Initialize dispatch
 
   const addProduct = (product) => {
-    dispatch(addCart(product));
+    dispatch(addCart(product)); // Dispatch addCart action with the product
   };
 
   useEffect(() => {
     const getProduct = async () => {
-      setLoading(true);
-      setLoading2(true);
+      setLoading(true); // Set loading state for the product
+      setLoading2(true); // Set loading state for similar products
       console.log(id, typeof(id));
-      const product_id=Number(id);
+      const product_id = Number(id);
+      // Fetch the product details by ID
       const response = await fetch(`http://localhost:3000/cashier/get-product-by-id/${id}`);
       const data = await response.json();
       console.log(data);
-      setProduct(data);
-      setLoading(false);
+      setProduct(data); // Set the fetched product details
+      setLoading(false); // Disable loading state for the product
+
+      // Fetch similar products by category ID
       const response2 = await fetch(
         `http://localhost:3000/cashier/get-category-by-id/${data.category_id}`
       );
       const data2 = await response2.json();
       console.log(data2);
-      setSimilarProducts(data2);
-      setLoading2(false);
+      setSimilarProducts(data2); // Set the fetched similar products
+      setLoading2(false); // Disable loading state for similar products
     };
     getProduct();
   }, [id]);
 
+  // Loading component to show skeleton placeholders
   const Loading = () => {
     return (
       <>
@@ -65,6 +69,7 @@ const Product = () => {
     );
   };
 
+  // Component to show the product details
   const ShowProduct = () => {
     return (
       <>
@@ -104,6 +109,7 @@ const Product = () => {
     );
   };
 
+  // Loading component to show skeleton placeholders for similar products
   const Loading2 = () => {
     return (
       <>
@@ -127,6 +133,7 @@ const Product = () => {
     );
   };
 
+  // Component to show similar products
   const ShowSimilarProduct = () => {
     return (
       <>
@@ -172,14 +179,16 @@ const Product = () => {
       </>
     );
   };
+
+  // Main component return statement
   return (
     <>
-      <Navbar />
+      <Navbar /> {/* Render Navbar component */}
       <div className="container">
         <div className="row">{loading ? <Loading /> : <ShowProduct />}</div>
         <div className="row my-5 py-5">
           <div className="d-none d-md-block">
-          <h2 className="">You may also Like</h2>
+            <h2 className="">You may also Like</h2>
             <Marquee
               pauseOnHover={true}
               pauseOnClick={true}
@@ -190,11 +199,9 @@ const Product = () => {
           </div>
         </div>
       </div>
-      <Footer />
-
-
+      <Footer /> {/* Render Footer component */}
     </>
   );
 };
 
-export default Product;
+export default Product; // Export the Product component

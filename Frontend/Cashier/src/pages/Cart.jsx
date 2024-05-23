@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { Footer, Navbar } from "../components";
-import { useSelector, useDispatch } from "react-redux";
-import { addCart, delCart } from "../redux/action";
-import { Link, useNavigate } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Table from 'react-bootstrap/Table';
+import { Footer, Navbar } from "../components"; // Importing Footer and Navbar components
+import { useSelector, useDispatch } from "react-redux"; // Importing hooks for accessing Redux state and dispatching actions
+import { addCart, delCart } from "../redux/action"; // Importing actions for adding and deleting items from the cart
+import { Link, useNavigate } from "react-router-dom"; // Importing hooks for navigation and linking
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS
+import Table from 'react-bootstrap/Table'; // Importing Bootstrap Table component
 
 const Cart = () => {
+  // Accessing the cart state from Redux store
   const state = useSelector((state) => state.handleCart);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Getting the dispatch function to dispatch actions
 
+  // Component to display when the cart is empty
   const EmptyCart = () => {
     return (
       <div className="container2" style={{ marginLeft: '10px', marginRight: '10px', width: '2000px' }}>
@@ -24,6 +26,7 @@ const Cart = () => {
     );
   };
 
+  // Functions to add and remove items from the cart
   const addItem = (product) => {
     dispatch(addCart(product));
   };
@@ -31,12 +34,15 @@ const Cart = () => {
     dispatch(delCart(product));
   };
 
+  // Component to display when there are items in the cart
   const ShowCart = () => {
+    // State for discount type, discount value, and whether to include shipping
     const [discountType, setDiscountType] = useState('percentage'); // Default discount type
     const [discountValue, setDiscountValue] = useState(10); // Default percentage discount
     const [includeShipping, setIncludeShipping] = useState(true); // Default to include shipping
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Getting the navigate function for navigation
 
+    // Calculate subtotal and total items
     let subtotal = 0;
     let shipping = includeShipping ? 30.0 : 0; // Update shipping based on user selection
     let totalItems = 0;
@@ -59,7 +65,8 @@ const Cart = () => {
       }
       return Math.round(subtotal + shipping - discount);
     };
-    // Calculate discount amount based on discount type and value
+    
+    // Function to calculate discount amount based on discount type and value
     const calculateDiscountAmount = () => {
       let discount = 0;
       if (discountType === 'percentage') {
@@ -78,6 +85,7 @@ const Cart = () => {
       setDiscountType(newDiscountType);
     };
 
+    // Function to handle checkout
     const handleCheckout = () => {
       const cartItems = state.map(item => ({
         id: item.id,
@@ -264,13 +272,13 @@ const Cart = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar /> {/* Rendering Navbar component */}
       <div className="container my-3 py-3">
-        {state.length > 0 ? <ShowCart /> : <EmptyCart />}
+        {state.length > 0 ? <ShowCart /> : <EmptyCart />} {/* Conditional rendering based on cart state */}
       </div>
-      <Footer />
+      <Footer /> {/* Rendering Footer component */}
     </>
   );
 };
 
-export default Cart;
+export default Cart; // Exporting Cart component

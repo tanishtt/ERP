@@ -1,40 +1,42 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate from react-router-dom
 
 const Register = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Initialize navigate for programmatic navigation
     const [formData, setFormData] = useState({
         full_name: '',
         email: '',
         phone: '',
-        role: 'cashier', // Default role
+        role: 'cashier', // Default role is set to 'cashier'
         username: '',
         password: ''
     });
 
+    // Handle form input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [name]: value }); // Update form data state
     };
 
+    // Handle form submission
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission
         console.log(formData);
-        fetch('http://localhost:3000/signup', {
+        fetch('http://localhost:3000/signup', { // Send a POST request to the signup endpoint
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(formData) // Send form data as JSON
         })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            window.alert('Registration successful! Please login.');
-            navigate('/login');
+            window.alert('Registration successful! Please login.'); // Alert user on successful registration
+            navigate('/login'); // Navigate to the login page
         })
         .catch((error) => {
-            console.error('Error:', error);
+            console.error('Error:', error); // Log any errors
             // Handle any errors here
         });
     };
@@ -45,6 +47,7 @@ const Register = () => {
                 <h1 className="text-center" style={{ marginTop: '30px' }}>Register</h1>
                 <form style={{ width: '1000px', marginLeft: '40px', marginTop: '30px' }} onSubmit={handleSubmit}>
 
+                    {/* Full Name and Email input fields */}
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                         <div style={{ marginRight: '20px' }}>
                             <label htmlFor="Name" style={{ marginLeft: '25px' }}>Full Name</label>
@@ -74,6 +77,7 @@ const Register = () => {
                         </div>
                     </div>
 
+                    {/* Contact Number and Role selection */}
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', marginTop: '20px' }}>
                         <div style={{ marginRight: '20px' }}>
                             <label htmlFor="contact" style={{ marginLeft: '25px' }}>Contact Number</label>
@@ -84,7 +88,7 @@ const Register = () => {
                                 name="phone"
                                 placeholder=""
                                 style={{ width: '300px' }}
-                                pattern="[0-9]{10}"
+                                pattern="[0-9]{10}" // Ensure the contact number is 10 digits
                                 value={formData.phone}
                                 onChange={handleChange}
                             />
@@ -94,7 +98,7 @@ const Register = () => {
                             <select
                                 className="form-control"
                                 id="role"
-                                style={{ width: '300px', marginLeft:'30px' }}
+                                style={{ width: '300px', marginLeft: '30px' }}
                                 name='role'
                                 value={formData.role}
                                 onChange={handleChange}
@@ -103,9 +107,9 @@ const Register = () => {
                                 <option value="admin">admin</option>
                             </select>
                         </div>
-
                     </div>
 
+                    {/* Username and Password input fields */}
                     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', marginTop: '20px' }}>
                         <div style={{ marginRight: '20px' }}>
                             <label htmlFor="Email" style={{ marginLeft: '25px' }}>Cashier username</label>
@@ -135,9 +139,12 @@ const Register = () => {
                         </div>
                     </div>
 
+                    {/* Link to the login page */}
                     <div className="my-3" style={{ marginLeft: '225px', paddingTop: '20px' }}>
                         <p>Already have an account? <Link to="/login" className="text-decoration-underline text-info">Login</Link> </p>
                     </div>
+                    
+                    {/* Register button */}
                     <div className="text-center" style={{ marginRight: '90px' }}>
                         <button className="my-2 mx-auto btn btn-dark" type="submit">
                             Register
@@ -149,4 +156,4 @@ const Register = () => {
     )
 }
 
-export default Register;
+export default Register; // Export the Register component

@@ -7,36 +7,42 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 import { Link } from "react-router-dom";
 
+// Define the Products component
 export const Products = () => {
+  // State variables to hold product data, filtered data, and loading status
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
-  let componentMounted = true;
+  let componentMounted = true; // Flag to check if component is mounted
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Get the dispatch function from redux
 
+  // Function to dispatch an action to add a product to the cart
   const addProduct = (product) => {
-    dispatch(addCart(product))
-  }
+    dispatch(addCart(product));
+  };
 
+  // useEffect hook to fetch products from the API when the component mounts
   useEffect(() => {
     const getProducts = async () => {
-      setLoading(true);
+      setLoading(true); // Set loading to true before fetching data
       const response = await fetch(`http://localhost:3000/cashier/get-products`);
       if (componentMounted) {
-        setData(await response.clone().json());
-        setFilter(await response.json());
-        setLoading(false);
+        setData(await response.clone().json()); // Set the data state with the response
+        setFilter(await response.json()); // Set the filter state with the response
+        setLoading(false); // Set loading to false after data is fetched
       }
 
+      // Cleanup function to set componentMounted to false
       return () => {
         componentMounted = false;
       };
     };
 
-    getProducts();
+    getProducts(); // Call the function to fetch products
   }, []);
 
+  // Component to display loading skeletons
   const Loading = () => {
     return (
       <>
@@ -65,10 +71,13 @@ export const Products = () => {
     );
   };
 
+  // Function to filter products by category
   const filterProduct = (cat) => {
     const updatedList = data.filter((item) => item.category === cat);
     setFilter(updatedList);
-  }
+  };
+
+  // Component to display the products
   const ShowProducts = () => {
     return (
       <>
@@ -84,7 +93,7 @@ export const Products = () => {
 
         {filter.map((product) => {
           return (
-            <div id={product.product_id} key={product.product_id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4" style={{ width: '20%', margin:'5px' }}>
+            <div id={product.product_id} key={product.product_id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4" style={{ width: '20%', margin: '5px' }}>
               <div className="card text-center h-100" key={product.product_id}>
                 <img
                   className="card-img-top p-3"
@@ -96,16 +105,15 @@ export const Products = () => {
                   <h5 className="card-title">
                     {product.product_name}...
                   </h5>
-                  <p className="card-text" style={{fontSize:'10px'}}>
+                  <p className="card-text" style={{ fontSize: '10px' }}>
                     {product.description}...
                   </p>
                 </div>
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item lead">₹ {product.price}</li>
-                
                 </ul>
 
-                <div className="card-body" style={{ width: '17vw', height: '4vw', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '5px !important'}}>
+                <div className="card-body" style={{ width: '17vw', height: '4vw', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '5px !important' }}>
                   <Link
                     to={"/product/" + product.product_id}
                     className="btn btn-dark m-1"
@@ -117,7 +125,7 @@ export const Products = () => {
                       alignItems: 'center',
                       fontSize: '14px', // Adjust the font size as desired
                       backgroundColor: '#25A541',
-                      border: 'none' ,
+                      border: 'none',
                       boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)'
                     }}
                   >
@@ -135,24 +143,22 @@ export const Products = () => {
                       alignItems: 'center',
                       fontSize: '14px', // Adjust the font size as desired
                       backgroundColor: '#25A541',
-                      border: 'none' ,
+                      border: 'none',
                       boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)'
                     }}
                   >
                     Add to Cart
                   </button>
-
                 </div>
-
-
               </div>
             </div>
-
           );
         })}
       </>
     );
   };
+
+  // Render the Products component
   return (
     <>
       <div className="cont">

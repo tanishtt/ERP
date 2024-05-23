@@ -1,12 +1,14 @@
-import React from 'react'
-import { Footer, Navbar } from "../components";
+import React from 'react';
+import { Footer, Navbar } from "../components"; // Importing Footer and Navbar components
+
+// Defining the AboutPage component
 const AboutPage = () => {
   return (
     <>
-      <Navbar />
+      <Navbar /> {/* Rendering the Navbar component */}
       <div className="container my-3 py-3">
-        <h1 className="text-center" style={{marginTop:'130px'}}>About Us</h1>
-        <hr />
+        <h1 className="text-center" style={{marginTop:'130px'}}>About Us</h1> {/* Page heading */}
+        <hr /> {/* Horizontal line */}
         <p className="lead text-center">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
           facere doloremque veritatis odit similique sequi. Odit amet fuga nam
@@ -21,10 +23,11 @@ const AboutPage = () => {
           delectus expedita a alias nam recusandae illo debitis repellat libero,
           quasi explicabo molestiae saepe, dolorem tempore itaque eveniet quam
           dignissimos blanditiis excepturi harum numquam vel nihil? Ipsum
-        </p>
+        </p> {/* About Us content */}
 
-        <h2 className="text-center py-4">Our Products</h2>
+        <h2 className="text-center py-4">Our Products</h2> {/* Section heading for products */}
         <div className="row">
+          {/* Product card for Men's Clothing */}
           <div className="col-md-3 col-sm-6 mb-3 px-3">
             <div className="card h-100">
               <img className="card-img-top img-fluid" src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />
@@ -33,6 +36,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          {/* Product card for Women's Clothing */}
           <div className="col-md-3 col-sm-6 mb-3 px-3">
             <div className="card h-100">
               <img className="card-img-top img-fluid" src="https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />
@@ -41,6 +45,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          {/* Product card for Jewelry */}
           <div className="col-md-3 col-sm-6 mb-3 px-3">
             <div className="card h-100">
               <img className="card-img-top img-fluid" src="https://images.pexels.com/photos/1927259/pexels-photo-1927259.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />
@@ -49,6 +54,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          {/* Product card for Electronics */}
           <div className="col-md-3 col-sm-6 mb-3 px-3">
             <div className="card h-100">
               <img className="card-img-top img-fluid" src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />
@@ -59,9 +65,9 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer /> {/* Rendering the Footer component */}
     </>
-  )
-}
+  );
+};
 
-export default AboutPage
+export default AboutPage; // Exporting the AboutPage component

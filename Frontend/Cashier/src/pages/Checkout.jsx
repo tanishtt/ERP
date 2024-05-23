@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Footer, Navbar } from "../components";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Footer, Navbar } from "../components"; // Importing Footer and Navbar components
+import { useSelector } from "react-redux"; // Importing useSelector from react-redux to access Redux state
+import { Link } from "react-router-dom"; // Importing Link for navigation
+import { NavLink } from "react-router-dom"; // Importing NavLink for navigation
 
 
 const Checkout = () => {
-  const state = useSelector((state) => state.handleCart);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const state = useSelector((state) => state.handleCart); // Accessing the cart state from Redux store
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track if the user is logged in
 
+  // Component to display when the cart is empty
   const EmptyCart = () => {
     return (
       <div className="container">
@@ -34,23 +35,22 @@ const Checkout = () => {
     );
   };
 
-
-
+  // Component to display the checkout process
   const ShowCheckout = () => {
     let discount = 0.1;
-    const [discountType, setDiscountType] = useState('percentage'); // Default discount type
-    const [discountValue, setDiscountValue] = useState(10); // Default percentage discount
-    const [includeShipping, setIncludeShipping] = useState(true); // Default to include shipping
-    const [paymentMethod, setPaymentMethod] = useState('card');
-    const [cashGiven, setCashGiven] = useState(""); // Define cashGiven and a function to update it
-    const [taxRate, setTaxRate] = useState(0.1);
+    const [discountType, setDiscountType] = useState('percentage'); // State to track the discount type
+    const [discountValue, setDiscountValue] = useState(10); // State to track the discount value
+    const [includeShipping, setIncludeShipping] = useState(true); // State to track if shipping is included
+    const [paymentMethod, setPaymentMethod] = useState('card'); // State to track the selected payment method
+    const [cashGiven, setCashGiven] = useState(""); // State to track the cash given for cash payments
+    const [taxRate, setTaxRate] = useState(0.1); // State to track the tax rate
 
 
     let subtotal = 0;
-    let shipping = includeShipping ? 30.0 : 0; // Update shipping based on user selection
+    let shipping = includeShipping ? 30.0 : 0; // Calculate shipping based on user selection
     let totalItems = 0;
 
-
+    // Calculate subtotal and total items
     state.map((item) => {
       return (subtotal += item.price * item.qty);
     });
@@ -58,6 +58,8 @@ const Checkout = () => {
     state.map((item) => {
       return (totalItems += item.qty);
     });
+
+    // Function to calculate the total amount
     const calculateTotalAmount = () => {
       let discount = 0;
       if (discountType === 'percentage') {
@@ -69,6 +71,8 @@ const Checkout = () => {
       return Math.round((subtotal + shipping + tax) - discount);
 
     };
+
+    // Function to calculate the discount amount
     const calculateDiscountAmount = () => {
       let discount = 0;
       if (discountType === "percentage") {
@@ -412,11 +416,11 @@ const Checkout = () => {
   };
   return (
     <>
-      <Navbar />
+      <Navbar /> {/* Navbar component */}
       <div className="container">
-        {state.length ? <ShowCheckout /> : <EmptyCart />}
+        {state.length ? <ShowCheckout /> : <EmptyCart />} {/* Conditionally render the checkout or empty cart */}
       </div>
-      <Footer />
+      <Footer /> {/* Footer component */}
     </>
   );
 };

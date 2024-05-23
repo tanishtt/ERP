@@ -4,15 +4,18 @@ import { Footer } from "../components";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
+  // State variables to manage visibility of password, cashier ID, and cashier password
   const [showPassword, setShowPassword] = useState(false);
   const [cashierId, setCashierId] = useState('');
   const [cashierPassword, setCashierPassword] = useState('');
-  const navigate = useNavigate(); // useNavigate hook
+  const navigate = useNavigate(); // useNavigate hook for programmatic navigation
 
+  // Function to toggle password visibility
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  // Function to handle input changes for cashier ID and password
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'username') {
@@ -22,8 +25,9 @@ const Login = () => {
     }
   };
 
+  // Function to handle form submission for login
   const handleLogin = (e) => {
-            e.preventDefault();
+    e.preventDefault();
     // Extract data from the form
     const formData = {
       username: cashierId,
