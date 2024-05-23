@@ -5,7 +5,7 @@ const AboutPage = () => {
     <>
       <Navbar />
       <div className="container my-3 py-3">
-        <h1 className="text-center">About Us</h1>
+        <h1 className="text-center" style={{marginTop:'130px'}}>About Us</h1>
         <hr />
         <p className="lead text-center">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum

@@ -1,0 +1,98 @@
+body {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  background-color: #f1faea; /* Set your desired background color here */
+}
+
+.navbar {
+  width: 100%; /* Make the navbar span the full width */
+  background-color: #50a74f !important; /* Set the navbar background color and make it important */
+}
+
+.contain {
+  padding-top: 1%; /* Add padding to the top */
+  background: linear-gradient(to top, #19624e); /* Gradient background */
+  text-align: center; /* Center text */
+  padding-bottom: 2%; /* Add padding to the bottom */
+}
+
+.search-bar {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  margin-left: 200px; /* Add left margin */
+  margin-bottom: '2px' !important; /* Add bottom margin (important to override other styles) */
+}
+
+.search-bar input {
+  flex: 1; /* Allow the input to grow to fill space */
+  padding: 8px; /* Add padding inside the input */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  margin-right: 8px; /* Add right margin */
+}
+
+.search-bar button {
+  padding: 8px; /* Add padding inside the button */
+  background-color: #b53535; /* Set button background color */
+  color: white; /* Set button text color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Round the corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin-left: 10px; /* Add left margin */
+}
+
+.search-bar button.round-button {
+  padding: 8px; /* Add padding inside the button */
+  background-color: #4caf50; /* Set button background color */
+  color: white; /* Set button text color */
+  border: none; /* Remove default border */
+  border-radius: 0%; /* Make it round */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin-left: 8px; /* Add some margin to separate it from the search button */
+}
+
+.search-bar button:hover {
+  background-color: #000000; /* Change button background color on hover */
+}
+
+.search-bar button.round-button:hover {
+  background-color: #45a049; /* Change round button background color on hover */
+}
+
+.rows {
+  padding-top: 5%; /* Add padding to the top */
+  background: #ffffff; /* Set background color to white */
+  text-align: center; /* Center text */
+  padding-bottom: 7%; /* Add padding to the bottom */
+  margin-left: '10px'; /* Add left margin */
+  margin-right: '17px'; /* Add right margin */
+}
+
+.cart {
+  width: 100%; /* Make the cart span the full width */
+  background: linear-gradient(to top, #cdfff6, #51aa9a); /* Gradient background */
+}
+
+.addtocartbtn {
+  width: '30px'; /* Set button width */
+  height: '20px'; /* Set button height */
+  background-color: #000000; /* Set button background color */
+}
+
+.contact-form-box {
+  border: 1px solid #ced4da; /* Add a border */
+  border-radius: 8px; /* Round the corners */
+  background-color: #e2efeb; /* Set background color */
+}
+
+.container5 {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items in a column */
+  align-items: center; /* Center items horizontally */
+}
+
+.box {
+  margin-right: 100px; /* Add right margin */
+  border-radius: 5px; /* Round the corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a shadow */
+}
