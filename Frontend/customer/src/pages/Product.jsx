@@ -4,44 +4,40 @@ import { Link, useParams } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
-
 import { Footer, Navbar } from "../components";
 
 const Product = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState([]);
-  const [similarProducts, setSimilarProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [loading2, setLoading2] = useState(false);
+  const { id } = useParams(); // Extracting the id parameter from the URL
+  const [product, setProduct] = useState([]); // State to hold the product data
+  const [similarProducts, setSimilarProducts] = useState([]); // State to hold similar products
+  const [loading, setLoading] = useState(false); // State to manage loading state of the product
+  const [loading2, setLoading2] = useState(false); // State to manage loading state of similar products
+  const dispatch = useDispatch(); // Redux dispatch function
 
-  const dispatch = useDispatch();
-
+  // Function to add a product to the cart
   const addProduct = (product) => {
     dispatch(addCart(product));
   };
 
+  // Fetching product data and similar products data from the API
   useEffect(() => {
     const getProduct = async () => {
-      setLoading(true);
-      setLoading2(true);
-      console.log(id, typeof(id));
-      const product_id=Number(id);
+      setLoading(true); // Set loading state to true
+      setLoading2(true); // Set loading state for similar products to true
+      const product_id = Number(id); // Convert id to number type
       const response = await fetch(`http://localhost:3000/customer/get-product-by-id/${id}`);
-      const data = await response.json();
-      console.log(data);
-      setProduct(data);
-      setLoading(false);
-      const response2 = await fetch(
-        `http://localhost:3000/customer/get-category-by-id/${data.category_id}`
-      );
-      const data2 = await response2.json();
-      console.log(data2);
-      setSimilarProducts(data2);
-      setLoading2(false);
+      const data = await response.json(); // Extract product data from response
+      setProduct(data); // Update product state with fetched data
+      setLoading(false); // Set loading state to false after data is fetched
+      const response2 = await fetch(`http://localhost:3000/customer/get-category-by-id/${data.category_id}`);
+      const data2 = await response2.json(); // Extract similar products data from response
+      setSimilarProducts(data2); // Update similar products state with fetched data
+      setLoading2(false); // Set loading state for similar products to false after data is fetched
     };
-    getProduct();
+    getProduct(); // Call the getProduct function when the component mounts or id changes
   }, [id]);
 
+  // Skeleton loading component for product
   const Loading = () => {
     return (
       <>
@@ -65,6 +61,7 @@ const Product = () => {
     );
   };
 
+  // Component to display product details
   const ShowProduct = () => {
     return (
       <>
@@ -100,6 +97,7 @@ const Product = () => {
     );
   };
 
+  // Skeleton loading component for similar products
   const Loading2 = () => {
     return (
       <>
@@ -123,6 +121,7 @@ const Product = () => {
     );
   };
 
+  // Component to display similar products
   const ShowSimilarProduct = () => {
     return (
       <>
@@ -143,9 +142,6 @@ const Product = () => {
                       {item.product_name}...
                     </h5>
                   </div>
-                  {/* <ul className="list-group list-group-flush">
-                    <li className="list-group-item lead">${product.price}</li>
-                  </ul> */}
                   <div className="card-body">
                     <Link
                       to={"/product/" + item.product_id}
@@ -168,6 +164,7 @@ const Product = () => {
       </>
     );
   };
+
   return (
     <>
       <Navbar />
@@ -175,7 +172,8 @@ const Product = () => {
         <div className="row">{loading ? <Loading /> : <ShowProduct />}</div>
         <div className="row my-5 py-5">
           <div className="d-none d-md-block">
-          <h2 className="">You may also Like</h2>
+            <h2 className="">You may also Like</h2>
+            {/* Marquee to display similar products */}
             <Marquee
               pauseOnHover={true}
               pauseOnClick={true}

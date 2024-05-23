@@ -4,13 +4,16 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Customer = () => {
+  // Get the cart state from Redux
   const state = useSelector((state) => state.handleCart);
+  // State variable for customer details
   const [customerDetails, setCustomerDetails] = useState({
     name: "",
     email: "",
     phone: "",
   });
 
+  // Function to handle input change in the form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setCustomerDetails((prevDetails) => ({
@@ -19,6 +22,7 @@ const Customer = () => {
     }));
   };
 
+  // Function to handle continue to checkout
   const continueToCheckout = async (e) => {
     e.preventDefault(); // Prevent form submission and page reload
 
@@ -53,6 +57,7 @@ const Customer = () => {
     }
   };
 
+  // Component for displaying an empty cart
   const EmptyCart = () => {
     return (
       <div className="container">
@@ -68,6 +73,7 @@ const Customer = () => {
     );
   };
 
+  // Component for displaying checkout form
   const ShowCheckout = () => {
     return (
       <div className="container py-5">

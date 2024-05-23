@@ -8,14 +8,16 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Cart = () => {
+  // Get the cart state and dispatch function from Redux
   const state = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
   
-
+  // State variables for discount type, discount value, and shipping
   const [discountType, setDiscountType] = useState("percentage");
   const [discountValue, setDiscountValue] = useState(10);
   const [includeShipping, setIncludeShipping] = useState(true);
 
+  // Component for displaying an empty cart
   const EmptyCart = () => {
     return (
       <div className="containers" style={{ marginLeft: '400px', width:'500px', marginTop:'180px' }}>
@@ -23,32 +25,36 @@ const Cart = () => {
           <div className="col-md-12 py-5 text-center">
             <img src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-7359557-6024626.png" alt="Empty Cart" style={{ width: '200px', height: '200px' }} />
             <h5 className="p-3 display-5" style={{ fontFamily: 'Arial, sans-serif', fontSize: '24px' }}>Your Cart is Empty</h5>
-
           </div>
         </div>
       </div>
     );
   };
 
+  // Function to add an item to the cart
   const addItem = (product) => {
     dispatch(addCart(product));
   };
+
+  // Function to remove an item from the cart
   const removeItem = (product) => {
     dispatch(delCart(product));
   };
 
-
-
+  // Component for displaying the cart
   const ShowCart = () => {
+    // Variables to calculate subtotal, shipping, and total items
     let subtotal = 0;
     let shipping = includeShipping ? 30.0 : 0;
     let totalItems = 0;
 
+    // Calculate subtotal and total items
     state.forEach((item) => {
       subtotal += item.price * item.qty;
       totalItems += item.qty;
     });
 
+    // Function to calculate the total amount
     const calculateTotalAmount = () => {
       let discount = 0;
       if (discountType === "percentage") {
@@ -59,6 +65,7 @@ const Cart = () => {
       return Math.round(subtotal + shipping - discount);
     };
 
+    // Function to calculate the discount amount
     const calculateDiscountAmount = () => {
       let discount = 0;
       if (discountType === "percentage") {
@@ -69,6 +76,7 @@ const Cart = () => {
       return discount.toFixed(2);
     };
 
+    // Event handler for changing the discount
     const handleDiscountChange = (e) => {
       const newDiscountAmount = parseFloat(e.target.value);
       const newDiscountType = newDiscountAmount > 0 ? "amount" : "percentage";
@@ -76,14 +84,15 @@ const Cart = () => {
       setDiscountType(newDiscountType);
     };
 
+    // Event handler for checkout
     const handleCheckout = () => {
       const cartItems = state.map((item) => ({
         product_id: item.product_id,
         quantity: item.qty,
         price: item.price,
       }));
-      
-    }
+      // Implement your checkout logic here
+    };
 
 
     return (

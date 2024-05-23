@@ -1,10 +1,11 @@
-import React from 'react'
-import { Footer, Navbar } from "../components";
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Footer, Navbar } from "../components"; // Importing necessary components
+import { Link } from 'react-router-dom'; // Importing Link component from react-router-dom
+
 const Register = () => {
     return (
         <>
-            <Navbar />
+            <Navbar /> {/* Render the Navbar component */}
             <div className="container my-3 py-3">
                 <h1 className="text-center">Register</h1>
                 <hr />
@@ -39,7 +40,7 @@ const Register = () => {
                                 />
                             </div>
                             <div className="my-3">
-                                <p>Already has an account? <Link to="/login" className="text-decoration-underline text-info">Login</Link> </p>
+                                <p>Already has an account? <Link to="/login" className="text-decoration-underline text-info">Login</Link> </p> {/* Provide a link to the Login page */}
                             </div>
                             <div className="text-center">
                                 <button class="my-2 mx-auto btn btn-dark" type="submit" disabled>
@@ -50,9 +51,9 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer /> {/* Render the Footer component */}
         </>
-    )
+    );
 }
 
-export default Register
+export default Register; // Export the Register component

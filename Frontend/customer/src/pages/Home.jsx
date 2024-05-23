@@ -1,4 +1,5 @@
-import { Navbar, Main, Product, Footer } from "../components";
+import React from "react";
+import { Navbar, Main, Product, Footer } from "../components"; // Imported components
 
 function Home() {
   return (
@@ -8,7 +9,7 @@ function Home() {
       <Product />
       <Footer />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

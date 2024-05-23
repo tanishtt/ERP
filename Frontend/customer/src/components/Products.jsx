@@ -1,24 +1,53 @@
+// Explanation:
+// Imports: Import necessary modules, including React, Redux hooks, Skeleton for loading states, and Link from react-router-dom.
+
+// State Variables:
+
+// data: Holds the fetched product data.
+// filter: Holds the filtered product data.
+// loading: Indicates if the data is still being fetched.
+// Redux Dispatch: Use useDispatch to get the dispatch function for adding products to the cart.
+
+// addProduct Function: Dispatches the action to add a product to the cart.
+
+// useEffect for Fetching Products:
+
+// getProducts fetches the product data from the server.
+// If the component is still mounted, it sets the data and filter states with the fetched data and sets loading to false.
+// Loading Component: Displays skeletons to indicate loading state.
+
+// filterProduct Function: Filters the products by category and updates the filter state.
+
+// ShowProducts Component:
+
+// Displays buttons to filter products by category.
+// Maps over the filter state to display each product.
+// Each product card includes an image, title, description, price, and buttons for "Buy Now" and "Add to Cart".
+// Return Statement: Conditionally renders the Loading or ShowProducts component based on the loading state. The container and row classes help with layout and styling.
+
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
-
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
 import { Link } from "react-router-dom";
 
 export const Products = () => {
+  // State variables to hold product data, filtered data, and loading state
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
-  let componentMounted = true;
+
+  let componentMounted = true; // To keep track if the component is mounted
 
   const dispatch = useDispatch();
 
+  // Function to handle adding product to cart
   const addProduct = (product) => {
     dispatch(addCart(product))
   }
 
+  // useEffect to fetch products from the server when the component mounts
   useEffect(() => {
     const getProducts = async () => {
       setLoading(true);
@@ -37,6 +66,7 @@ export const Products = () => {
     getProducts();
   }, []);
 
+  // Loading component to display skeletons while data is being fetched
   const Loading = () => {
     return (
       <>
@@ -46,9 +76,7 @@ export const Products = () => {
         <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
           <Skeleton height={592} />
         </div>
-        <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
-        </div>
+        {/* Repeat skeleton components for more loading placeholders */}
         <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
           <Skeleton height={592} />
         </div>
@@ -65,10 +93,13 @@ export const Products = () => {
     );
   };
 
+  // Function to filter products by category
   const filterProduct = (cat) => {
     const updatedList = data.filter((item) => item.category === cat);
     setFilter(updatedList);
   }
+
+  // Component to display products
   const ShowProducts = () => {
     return (
       <>
@@ -102,8 +133,6 @@ export const Products = () => {
                 </div>
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item lead">₹ {product.price}</li>
-                  {/* <li className="list-group-item">Dapibus ac facilisis in</li>
-                    <li className="list-group-item">Vestibulum at eros</li> */}
                 </ul>
 
                 <div className="card-body" style={{ width: '16vw', height: '4vw', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1px !important' }}>
@@ -116,7 +145,7 @@ export const Products = () => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      fontSize: '14px', // Adjust the font size as desired
+                      fontSize: '14px',
                       backgroundColor: '#25A541',
                       border: 'none' ,
                       boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)'
@@ -134,31 +163,26 @@ export const Products = () => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      fontSize: '14px', // Adjust the font size as desired
+                      fontSize: '14px',
                       backgroundColor: '#25A541',
                       border: 'none' ,
                       boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)'
-
                     }}
                   >
                     Add to Cart
                   </button>
-
                 </div>
-
-
               </div>
             </div>
-
           );
         })}
       </>
     );
   };
+
   return (
     <>
       <div className="container my-3 py-3">
-        
         <div className="row justify-content-center">
           {loading ? <Loading /> : <ShowProducts />}
         </div>
