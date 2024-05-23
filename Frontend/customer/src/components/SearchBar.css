@@ -8,6 +8,7 @@
   background-color: white;
   display: flex;
   align-items: center;
+  align-content: center;
 }
 
 input {
@@ -16,7 +17,7 @@ input {
   height: 100%;
   font-size: 1.25rem;
   width: 100%;
-  margin-left: 5px;
+  margin-left: 25px;
 }
 
 input:focus {

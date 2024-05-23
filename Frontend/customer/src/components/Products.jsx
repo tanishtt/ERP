@@ -84,35 +84,69 @@ export const Products = () => {
 
         {filter.map((product) => {
           return (
-            <div id={product.product_id} key={product.product_id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-              <div className="card text-center h-100" key={product.product_id}>
+            <div id={product.id} key={product.id} className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4" style={{ width: '20%' }}>
+              <div className="card text-center h-100" key={product.id}>
                 <img
                   className="card-img-top p-3"
                   src={product.photos}
                   alt="Card"
-                  height={300}
+                  height={150}
                 />
                 <div className="card-body">
                   <h5 className="card-title">
-                    {product.product_name.substring(0, 12)}...
+                    {product.title}
                   </h5>
-                  <p className="card-text">
-                    {product.description.substring(0, 90)}...
+                  <p className="card-text" style={{fontSize:'10px'}}>
+                    {product.description}
                   </p>
                 </div>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item lead">$ {product.price}</li>
+                  <li className="list-group-item lead">₹ {product.price}</li>
                   {/* <li className="list-group-item">Dapibus ac facilisis in</li>
                     <li className="list-group-item">Vestibulum at eros</li> */}
                 </ul>
-                <div className="card-body">
-                  <Link to={"/product/" + product.product_id} className="btn btn-dark m-1">
+
+                <div className="card-body" style={{ width: '16vw', height: '4vw', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1px !important' }}>
+                  <Link
+                    to={"/product/" + product.id}
+                    className="btn btn-dark m-1"
+                    style={{
+                      width: '95px',
+                      height: '40px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      fontSize: '14px', // Adjust the font size as desired
+                      backgroundColor: '#25A541',
+                      border: 'none' ,
+                      boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)'
+                    }}
+                  >
                     Buy Now
                   </Link>
-                  <button className="btn btn-dark m-1" onClick={() => addProduct(product)}>
+
+                  <button
+                    className="btn btn-dark"
+                    onClick={() => addProduct(product)}
+                    style={{
+                      width: '110px',
+                      height: '40px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      fontSize: '14px', // Adjust the font size as desired
+                      backgroundColor: '#25A541',
+                      border: 'none' ,
+                      boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)'
+
+                    }}
+                  >
                     Add to Cart
                   </button>
+
                 </div>
+
+
               </div>
             </div>
 
@@ -124,12 +158,7 @@ export const Products = () => {
   return (
     <>
       <div className="container my-3 py-3">
-        <div className="row">
-          <div className="col-12">
-            <h2 className="display-5 text-center">Latest Products</h2>
-            <hr />
-          </div>
-        </div>
+        
         <div className="row justify-content-center">
           {loading ? <Loading /> : <ShowProducts />}
         </div>

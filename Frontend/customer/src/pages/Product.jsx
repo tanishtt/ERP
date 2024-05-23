@@ -79,13 +79,9 @@ const Product = () => {
                 height="400px"
               />
             </div>
-            <div className="col-md-6 col-md-6 py-5">
+            <div className="col-md-6 col-md-6 py-5" style={{marginTop:'10vw'}}>
               <h4 className="text-uppercase text-muted">{product.category_id}</h4>
               <h1 className="display-5">{product.product_name}</h1>
-              {/* // <p className="lead">
-              //   {product.rating && product.rating.rate}{" "}
-              //   <i className="fa fa-star"></i>
-              // </p> */}
               <h3 className="display-6  my-4">${product.price}</h3>
               <p className="lead">{product.description}</p>
               <button
